@@ -1,35 +1,78 @@
-from django.shortcuts import render, redirect
+from .forms import ItemForm, LocationForm
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
-from .models import Product
-from django.views.generic import DetailView
-from .forms import ProductForm
+from .models import Item
+from .forms import ItemForm
+from .models import Location
+from django.contrib import messages
+from django.urls import reverse
+from django.db import models
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
-
-class ProductDetailView(DetailView):
-    model = Product
-    template_name = 'product_detail.html'
-    context_object_name = 'product'
-
-    def get(self, request, *args, **kwargs):
-
-        return super().get(request, *args, **kwargs)
 
 
 def ListingView(request):
     return render(request, 'product_list.html')
 
+# View for home page
 
-def CreateAd(request):
+
+def Home(request):
+    context = {
+        'welcome_message': 'Welcome to My Django Web App!',
+    }
+    return render(request, 'home.html', context)
+
+# view for adding item
+
+
+@login_required
+def add_item_view(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            Product = form.save(commit=False)
-            Product.seller = request.User
-            Product.save()
-            return redirect('prouct_list')
-    else:
-        form = ProductForm()
+        item_form = ItemForm(request.POST, request.FILES)
+        location_form = LocationForm(request.POST)
 
-    return render(request, 'create_ad.html', {'form': form})
+        if item_form.is_valid() and location_form.is_valid():
+            item = item_form.save(commit=False)
+            item.seller = request.user
+
+            # Get the selected location ID
+            selected_location_id = location_form.cleaned_data.get('location')
+
+            try:
+                # This will Makes sure that the user selected_location_id is a valid integer
+                selected_location_id = int(selected_location_id)
+                selected_location = Location.objects.get(
+                    pk=selected_location_id)
+                item.location = selected_location
+                item.save()
+                messages.success(request, 'Item added successfully!')
+                return redirect('item_list')
+            except (ValueError, Location.DoesNotExist):
+                # Handle in case that the selected location does not exist or the ID is invalid
+                messages.error(
+                    request, 'Error in form submission. Please check your inputs.')
+        else:
+            messages.error(
+                request, 'Error in form submission. Please check your inputs.')
+    else:
+        item_form = ItemForm()
+        location_form = LocationForm()
+
+    return render(request, 'add_item.html', {'item_form': item_form, 'location_form': location_form})
+
+# view for item detail
+
+
+def item_detail(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    return render(request, 'item_detail.html', {'item': item})
+
+# view for item list
+
+
+def item_list(request):
+    items = Item.objects.all()
+    return render(request, 'item_list.html', {'items': items})

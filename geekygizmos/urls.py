@@ -21,10 +21,16 @@ from onlineshop import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.ListingView, name='post_list'),
-    path('create-ad/', views.CreateAd, name='create-ad'),
-    path('accounts/', include('allauth.urls')),  
+    path('', views.Home, name='home'),
+    path('add_item/', views.add_item_view, name='add_item'),
+    path('product_detail/<int:item_id>/',
+         views.item_detail, name='product_detail'),
+    path('item_list/', views.item_list, name='item_list'),
+    path('item_detail/<int:item_id>/', views.item_detail, name='item_detail'),
 
+    path('accounts/', include('allauth.urls')),
+    path('product/add/', views.add_item_view, name='add_product'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

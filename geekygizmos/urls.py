@@ -32,6 +32,7 @@ urlpatterns = [
     path('item_detail/<int:item_id>/', views.item_detail, name='item_detail'),
     path('search/', views.search_results, name='search_results'),
     path('bag/', include('bag.urls')),
+    path('profile/', views.Profile, name='profile'),
 
     path('accounts/', include('allauth.urls')),
     path('product/add/', views.add_item_view, name='add_product'),

@@ -25,9 +25,43 @@ def Home(request):
     }
     return render(request, 'home.html', context)
 
+
+def Profile(request):
+    context = {
+        'welcome_message': 'Welcome to My Django Web App!',
+    }
+
+    # Retrieve items associated with the logged-in user that are available for sale
+    seller_items = Item.objects.filter(seller=request.user, is_available=True)
+    seller_items = Item.objects.filter(seller=request.user, is_sold=False)
+
+    # Retrieve items associated with the logged-in user that are marked as sold
+    sold_items = Item.objects.filter(seller=request.user, is_sold=True)
+
+    context['seller_items'] = seller_items  # Add seller_items to the context
+    context['sold_items'] = sold_items  # Add sold_items to the context
+
+    # Check if a UserProfile instance exists for the current user
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, 'Profile updated successfully', extra_tags='profile_updates')
+
+    form = UserProfileForm(instance=profile)
+    orders = profile.orders.all()
+
+    context['form'] = form  # Add the profile form to the context
+    context['orders'] = orders
+
+    return render(request, 'profile.html', context)
+
+
+
 # view for adding item
-
-
 @login_required
 def add_item_view(request):
     if request.method == 'POST':

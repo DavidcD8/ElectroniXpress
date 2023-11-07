@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/bag.css' %}" />  
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% if bag_items %}
+            <h1 class="text-center mt-4 mb-5">Your Shopping Bag</h1>
+
+            <div class="table-responsive rounded">
+                <table class="table table-bordered">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Price (€)</th>
+                            <th>Total (€)</th>
+                            <th>Photo</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item_dict in bag_items %}
+                        {% if item_dict.quantity > 0 %}
+                        <tr>
+                            <td class="align-middle">
+                                <a href="{% url 'item_detail' item_dict.item.id %}" class="text-decoration-none">
+                                    {{ item_dict.item.name }}
+                                </a>
+                            </td>
+                            <td class="align-middle">
+                                <form method="POST" action="{% url 'update_bag' item_dict.item.id %}">
+                                    {% csrf_token %}
+                                    <div class="input-group">
+                                        <input
+                                            type="number"
+                                            name="quantity"
+                                            value="{{ item_dict.quantity }}"
+                                            min="1"
+                                            max="99"
+                                            class="form-control qty_input"
+                                            id="id_qty_{{ item_dict.item.id }}"
+                                            data-item_id="{{ item_dict.item.id }}"
+                                        >
+                                        <button type="submit" class="btn btn-outline-primary">
+                                            Update
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
+                            <td class="align-middle">{{ item_dict.item.price | floatformat:2 }}</td>
+                            <td class="align-middle">{{ item_dict.total_price | floatformat:2}}</td>
+                            <td class="align-middle">
+                                <img src="{{ item_dict.item.image.url }}" alt="{{ item_dict.item.name }}" width="100">
+                            </td>
+                            <td class="align-middle">
+                                <form method="POST" action="{% url 'remove_from_bag' item_dict.item.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger">
+                                        Remove
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td class="font-weight-bold text-end">Grand Total (€):</td>
+                        <td class="font-weight-bold">{{ grand_total | floatformat:2}}</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="{% url 'checkout' %}" class="btn btn-secondary">Checkout</a>
+            </div>
+            
+            {% else %}
+            <p class="lead text-center mt-4">Your bag is empty.</p>
+            <div class="text-center mt-4">
+                <a href="{% url 'item_list' %}" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-shopping-cart me-2"></i> Continue Shopping
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

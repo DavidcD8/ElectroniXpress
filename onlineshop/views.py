@@ -66,6 +66,26 @@ def Profile(request):
     return render(request, 'profile.html', context)
 
 
+def view_other_profile(request, username):
+    # Get the user profile of the user with the given username
+    user_profile = get_object_or_404(UserProfile, user__username=username)
+
+    # Get the items associated with the user and that are available for sale
+    user_items = Item.objects.filter(
+        seller=user_profile.user, is_available=True)
+
+    context = {
+        'user_profile': user_profile,
+        'user_items': user_items,
+    }
+
+    return render(request, 'other_profile.html', context)
+
+
+
+
+
+
 # view for item list page
 def item_list_view(request):
     # Filter out sold items and retrieve only available items
@@ -84,40 +104,28 @@ def item_list_view(request):
     return render(request, 'item_list.html', {'page': page})
 
 
-# view for adding item
 @login_required
 def add_item_view(request):
     if request.method == 'POST':
         item_form = ItemForm(request.POST, request.FILES)
 
-        if item_form.is_valid() and location_form.is_valid():
+        if item_form.is_valid():
+            # Process the form data and save the item
             item = item_form.save(commit=False)
             item.seller = request.user
-
-            # Get the selected location ID
-            selected_location_id = location_form.cleaned_data.get('location')
-
-            try:
-                # This will Makes sure that the user selected_location_id is a valid integer
-                selected_location_id = int(selected_location_id)
-                selected_location = Location.objects.get(
-                    pk=selected_location_id)
-                item.location = selected_location
-                item.save()
-                messages.success(request, 'Item added successfully!')
-                return redirect('item_list')
-            except (ValueError, Location.DoesNotExist):
-                # Handle in case that the selected location does not exist or the ID is invalid
-                messages.error(
-                    request, 'Error in form submission. Please check your inputs.')
+            item.save()
+            item_form.save_m2m()
+            messages.success(request, 'Item added successfully!')
+            # Redirect to the item list page after successfully adding an item
+            return redirect('item_list')
         else:
             messages.error(
-                request, 'Error in form submission. Please check your inputs.')
+                request, 'Form submission failed. Please check your input.')
+
     else:
         item_form = ItemForm()
-        location_form = LocationForm()
 
-    return render(request, 'add_item.html', {'item_form': item_form, 'location_form': location_form})
+    return render(request, 'add_item.html', {'item_form': item_form})
 
 
 def search_results(request):
@@ -215,14 +223,3 @@ def item_detail(request, item_id):
 def item_list(request):
     items = Item.objects.all()
     return render(request, 'item_list.html', {'items': items})
-
-
-# View to remove a cart item
-def remove_cart_item(request, product_id):
-    if request.method == 'POST':
-        cart_item = CartItem.objects.get(
-            product_id=product_id, cart=request.cart)
-        cart_item.delete()
-        messages.success(request, 'Cart item removed successfully.')
-
-    return redirect('cart')

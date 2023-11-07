@@ -35,6 +35,7 @@ urlpatterns = [
     path('bag/', include('bag.urls')),
     path('profile/', views.Profile, name='profile'),
     path('profile/<str:username>/', views.Profile, name='profile'),
+    path('bag/', include('bag.urls')),
 
     path('accounts/logout/',
          LogoutView.as_view(template_name='account/logout.html'), name='logout'),

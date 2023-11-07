@@ -10,8 +10,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
 from .models import UserProfile
+from .forms import CheckoutForm
+from .forms import UpdateQuantityForm
 from django.core.paginator import Paginator
-
+from decimal import Decimal
+import logging
+from .forms import EditItemForm
 # Create your views here.
 
 
@@ -176,31 +180,26 @@ def update_bag(request, item_id):
     return redirect('view_bag')
 
 
-@login_required
-def add_item_view(request):
+def process_checkout_view(request):
     if request.method == 'POST':
-        item_form = ItemForm(request.POST, request.FILES)
+        form = CheckoutForm(request.POST)
 
-        if item_form.is_valid():
-            # Process the form data and save the item
-            item = item_form.save(commit=False)
-            item.seller = request.user
-            item.save()
-            item_form.save_m2m()
-            messages.success(request, 'Item added successfully!')
-            # Redirect to the item list page after successfully adding an item
-            return redirect('item_list')
+        if form.is_valid():
+            # Form data is valid, process the checkout logic here
+            # For example, save the order, charge the card, etc.
+
+            # Redirect to a success page after successful checkout
+            messages.success(request, 'Order placed successfully!')
+            return redirect('order_success')
         else:
+            # Form data is invalid, display error messages
             messages.error(
-                request, 'Form submission failed. Please check your input.')
+                request, 'Invalid payment details. Please check and try again.')
 
     else:
-        item_form = ItemForm()
+        form = CheckoutForm()
 
-    return render(request, 'add_item.html', {'item_form': item_form})
-
-
-
+    return render(request, 'checkout.html', {'form': form})
 
 
 # view for item detail
@@ -216,3 +215,14 @@ def item_detail(request, item_id):
 def item_list(request):
     items = Item.objects.all()
     return render(request, 'item_list.html', {'items': items})
+
+
+# View to remove a cart item
+def remove_cart_item(request, product_id):
+    if request.method == 'POST':
+        cart_item = CartItem.objects.get(
+            product_id=product_id, cart=request.cart)
+        cart_item.delete()
+        messages.success(request, 'Cart item removed successfully.')
+
+    return redirect('cart')

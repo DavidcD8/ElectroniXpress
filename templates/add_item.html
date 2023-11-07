@@ -1,9 +1,26 @@
-{% extends 'base.html' %} {% load static %} {% block content %} {% load static
-%}
+{% extends 'base.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/add_item.css' %}" />
 
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %} {{ item_form.as_p }} {{ location_form.as_p }}
-  <input type="submit" value="Add Item" />
-</form>
-
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="modern-form">
+        {% if user.is_authenticated %}
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <h2 class="mb-4">Add Item</h2>
+          {{ item_form.as_p }}
+          <button type="submit" class="btn btn-primary btn-block">
+            Add Item
+          </button>
+        </form>
+        {% else %}
+        <p class="text-center mt-4">
+          Please <a href="{% url 'login' %}">log in</a> to add an item.
+        </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

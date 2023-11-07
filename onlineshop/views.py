@@ -9,6 +9,8 @@ from django.urls import reverse
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from .forms import UserProfileForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -59,6 +61,36 @@ def Profile(request):
 
     return render(request, 'profile.html', context)
 
+
+def item_detail(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+
+    return render(request, 'item_detail.html', {'item': item})
+
+
+# view for item list page
+def item_list_view(request):
+    # Filter out sold items and retrieve only available items
+    item_list = Item.objects.filter(is_sold=False).order_by('-created_on')
+
+    # Set the number of items per page
+    items_per_page = 20
+    paginator = Paginator(item_list, items_per_page)
+
+    # Get the current page number from the request's GET parameters
+    page_number = request.GET.get('page')
+
+    # Get the Page object for the current page
+    page = paginator.get_page(page_number)
+
+    return render(request, 'item_list.html', {'page': page})
+
+
+# view for item detail page
+def item_detail(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+
+    return render(request, 'item_detail.html', {'item': item})
 
 
 # view for adding item
@@ -141,5 +173,3 @@ def item_detail(request, item_id):
 def item_list(request):
     items = Item.objects.all()
     return render(request, 'item_list.html', {'items': items})
-
-

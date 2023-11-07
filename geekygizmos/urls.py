@@ -30,6 +30,7 @@ urlpatterns = [
          views.item_detail, name='product_detail'),
     path('item_list/', views.item_list, name='item_list'),
     path('item_detail/<int:item_id>/', views.item_detail, name='item_detail'),
+    path('search/', views.search_results, name='search_results'),
 
     path('accounts/', include('allauth.urls')),
     path('product/add/', views.add_item_view, name='add_product'),

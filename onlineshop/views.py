@@ -63,6 +63,15 @@ def add_item_view(request):
 
     return render(request, 'add_item.html', {'item_form': item_form, 'location_form': location_form})
 
+
+def search_results(request):
+    query = request.GET.get('query')
+    results = Item.objects.filter(name__icontains=query)
+    return render(request, 'search_results.html', {'results': results, 'query': query})
+
+
+
+
 # view for item detail
 
 
@@ -76,3 +85,5 @@ def item_detail(request, item_id):
 def item_list(request):
     items = Item.objects.all()
     return render(request, 'item_list.html', {'items': items})
+
+

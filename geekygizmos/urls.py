@@ -20,7 +20,8 @@ from onlineshop import urls
 from onlineshop import views
 from django.conf import settings
 from django.conf.urls.static import static
-
+from allauth.account.views import LogoutView
+from allauth.account.views import LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,7 +34,9 @@ urlpatterns = [
     path('search/', views.search_results, name='search_results'),
     path('bag/', include('bag.urls')),
     path('profile/', views.Profile, name='profile'),
-
+    path('accounts/logout/',
+         LogoutView.as_view(template_name='account/logout.html'), name='logout'),
+    path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/', include('allauth.urls')),
     path('product/add/', views.add_item_view, name='add_product'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

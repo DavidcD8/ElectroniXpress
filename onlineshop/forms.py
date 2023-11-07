@@ -1,8 +1,6 @@
-from .models import Item, Location
+from .models import Item
 from django import forms
 from .models import UserProfile
-
-STATUS = ((0, "sold"), (1, "instock"))
 
 
 class UserProfileForm(forms.ModelForm):

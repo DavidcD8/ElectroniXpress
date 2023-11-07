@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1>Mark Item as Sold</h1>
+  <p>Are you sure you want to mark "{{ item.name }}" as sold?</p>
+  <form method="post" action="{% url 'profile' %}"> <!-- Change the action attribute to 'profile' URL -->
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Mark as Sold</button>
+    <a href="{% url 'profile' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+  
+ 
+{% endblock %}

@@ -2,15 +2,22 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+ # Create your models here.
 from django.utils import timezone
 from django_countries.fields import CountryField
 
-# Create your models here.
+
+class Location(models.Model):
+  
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
 CONDITION_CHOICES = (
     ("new", "New"),
     ("used", "Used"),
 )
-
 
 class Item(models.Model):
     name = models.CharField(max_length=254)
@@ -18,13 +25,13 @@ class Item(models.Model):
     description = models.TextField()
     sku = models.CharField(max_length=254, null=True, blank=True)
     image = models.ImageField()
-    seller = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="items")
+    seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name="items")
+    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
+    created_on = models.DateTimeField(default=timezone.now)
     is_available = models.BooleanField(default=True)
     is_sold = models.BooleanField(default=False)
     quantity = models.PositiveIntegerField(default=1)
-    condition = models.CharField(
-        max_length=50, choices=CONDITION_CHOICES, default='new')
+    condition = models.CharField(max_length=50, choices=CONDITION_CHOICES, default='new')
 
     def mark_as_sold(self):
         self.is_available = False
@@ -35,25 +42,20 @@ class Item(models.Model):
         return self.name
 
 
+
 class UserProfile(models.Model):
     """
     A user profile model for maintaining default delivery information and order history
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(
-        upload_to='profile_pictures/', blank=True, null=True)
-    default_phone_number = models.CharField(
-        max_length=20, null=True, blank=True)
-    default_street_address1 = models.CharField(
-        max_length=80, null=True, blank=True)
-    default_street_address2 = models.CharField(
-        max_length=80, null=True, blank=True)
-    default_town_or_city = models.CharField(
-        max_length=40, null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
+    default_phone_number = models.CharField(max_length=20, null=True, blank=True)
+    default_street_address1 = models.CharField(max_length=80, null=True, blank =True)
+    default_street_address2 = models.CharField(max_length=80, null=True, blank=True)
+    default_town_or_city = models.CharField(max_length=40, null=True, blank=True)
     default_county = models.CharField(max_length=80, null=True, blank=True)
     default_postcode = models.CharField(max_length=20, null=True, blank=True)
-    default_country = CountryField(
-        blank_label='Country', null=True, blank=True)
+    default_country = CountryField(blank_label='Country', null=True, blank=True)
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
@@ -68,3 +70,14 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
+
+
+class Message(models.Model):
+    sender = models.ForeignKey(User, related_name='sent_messages', on_delete=models.CASCADE)
+    receiver = models.ForeignKey(User, related_name='received_messages', on_delete=models.CASCADE)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+
+
+ 

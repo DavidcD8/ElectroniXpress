@@ -1,13 +1,16 @@
-from .models import Item
+from .models import Item, Location
 from django import forms
 from .models import UserProfile
+
+
 
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = '__all__'  # Include all fields except 'user'
-        exclude = ('user', 'profile_picture')  # Exclude 'user' field
+        exclude = ('user','profile_picture')  # Exclude 'user' field
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -30,7 +33,6 @@ class UserProfileForm(forms.ModelForm):
             self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
             self.fields[field].label = False
 
-
 CONDITION_CHOICES = (
     ("new", "New"),
     ("used", "Used"),
@@ -42,22 +44,23 @@ class ItemForm(forms.ModelForm):
 
     class Meta:
         model = Item
-        fields = ['name', 'description', 'price', 'image',
-                  'quantity', 'is_available', 'condition']
+        fields = ['name', 'description', 'price', 'image', 'quantity', 'is_available', 'condition']
 
 
 class EditItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ['name', 'description', 'price', 'image',
-                  'quantity', 'is_available', 'condition']
-
+        fields = ['name', 'description', 'price', 'image', 'quantity','is_available', 'condition']
 
 class MarkItemAsSoldForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ['is_sold']
 
+class AddToCartForm(forms.Form):
+    quantity = forms.IntegerField(min_value=1, initial=1)
+
+     
 
 class CheckoutForm(forms.Form):
     billing_name = forms.CharField(max_length=255, required=True)
@@ -69,3 +72,5 @@ class CheckoutForm(forms.Form):
 
 class UpdateQuantityForm(forms.Form):
     quantity = forms.IntegerField(min_value=1, max_value=99)
+
+

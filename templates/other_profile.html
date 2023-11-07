@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/other_profile.css' %}" />
+
+<div class="container mt-4">
+    <h1>User Profile</h1>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Display the user's profile picture if available -->
+            {% if user_profile.profile_picture %}
+                <img src="{{ user_profile.profile_picture.url }}" alt="{{ user_profile.user.username }}'s Profile Picture" class="img-fluid">
+            {% else %}
+                <p>No profile picture available.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <!-- Display user information -->
+            <h2>{{ user_profile.user.username }}</h2>
+            <p>Email: {{ user_profile.user.email }}</p>
+            <!-- You can display other user-related information here -->
+
+            <!-- Display items the user is selling -->
+            <h3>Items for Sale</h3>
+            <ul>
+                {% for item in user_items %}
+                    <li>
+                        <a href="{% url 'item_detail' item.id %}">{{ item.name }}</a> - Price: ${{ item.price }}
+                    </li>
+                {% empty %}
+                    <li>No items currently for sale.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -33,23 +33,16 @@
                 <hr>
                 <p class="price">€{{ item.price }}</p>
                 <p class="status available" id="notbold_description">{{ item.description }}</p>
-                <small>
-                    <p class="quantity">Available: {{ item.quantity }}</p>
-                </small>
-                <b>
-                    <p class="card-text">Condition:
-                </b> {{ item.condition }}</p>
-                <b>
-                    <p>Seller:
-                </b> <a href="{% url 'view_other_profile' username=item.seller.username %}">{{ item.seller.username
-                    }}</a></p>
+                <small><p class="quantity">Available: {{ item.quantity }}</p></small>
+                <b><p class="card-text">Condition:</b> {{ item.condition }}</p>
+                <b><p>Seller:</b> <a href="{% url 'view_other_profile' username=item.seller.username %}">{{ item.seller.username }}</a></p>
 
                 <form class="add-to-bag-form" action="{% url 'add_to_bag' item.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="quantity">Quantity:</label>
-                        <input class="form-control quantity-input" type="number" name="quantity" value="1" min="1"
-                            max="99" data-item_id="{{ item.id }}" id="id_qty_{{ item.id }}">
+                        <input class="form-control quantity-input" type="number" name="quantity" value="1" min="1" max="99"
+                            data-item_id="{{ item.id }}" id="id_qty_{{ item.id }}">
                     </div>
                     <div class="buttons">
                         <a href="{% url 'item_list' %}" class="btn btn-secondary btn-back">Keep Shopping</a>

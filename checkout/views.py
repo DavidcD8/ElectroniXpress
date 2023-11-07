@@ -9,7 +9,6 @@ from .models import Order, OrderLineItem
 from onlineshop.models import Item
 from bag.contexts import bag_contents
 from onlineshop.models import UserProfile
-import stripe
 import json
 
 

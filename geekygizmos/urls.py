@@ -34,6 +34,8 @@ urlpatterns = [
     path('search/', views.search_results, name='search_results'),
     path('bag/', include('bag.urls')),
     path('profile/', views.Profile, name='profile'),
+    path('profile/<str:username>/', views.Profile, name='profile'),
+
     path('accounts/logout/',
          LogoutView.as_view(template_name='account/logout.html'), name='logout'),
     path('accounts/login/', LoginView.as_view(), name='account_login'),

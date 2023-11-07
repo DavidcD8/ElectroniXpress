@@ -9,6 +9,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
+from .models import UserProfile
 from django.core.paginator import Paginator
 
 # Create your views here.
@@ -61,12 +62,6 @@ def Profile(request):
     return render(request, 'profile.html', context)
 
 
-def item_detail(request, item_id):
-    item = get_object_or_404(Item, id=item_id)
-
-    return render(request, 'item_detail.html', {'item': item})
-
-
 # view for item list page
 def item_list_view(request):
     # Filter out sold items and retrieve only available items
@@ -85,19 +80,11 @@ def item_list_view(request):
     return render(request, 'item_list.html', {'page': page})
 
 
-# view for item detail page
-def item_detail(request, item_id):
-    item = get_object_or_404(Item, id=item_id)
-
-    return render(request, 'item_detail.html', {'item': item})
-
-
 # view for adding item
 @login_required
 def add_item_view(request):
     if request.method == 'POST':
         item_form = ItemForm(request.POST, request.FILES)
-        location_form = LocationForm(request.POST)
 
         if item_form.is_valid() and location_form.is_valid():
             item = item_form.save(commit=False)
@@ -158,6 +145,36 @@ def view_bag(request):
     }
 
     return render(request, 'bag/bag.html', context)
+
+
+def update_bag(request, item_id):
+    if request.method == 'POST':
+        form = UpdateQuantityForm(request.POST)
+        if form.is_valid():
+            new_quantity = form.cleaned_data['quantity']
+
+            # Update the bag item's quantity
+            bag = request.session.get('bag', {})
+            bag[item_id] = new_quantity
+            request.session['bag'] = bag
+            request.session.modified = True
+
+            # Recalculate bag contents (subtotal and total)
+            total = Decimal(0)
+            for item_id, quantity in bag.items():
+                item = get_object_or_404(Item, pk=item_id)
+                total += item.price * quantity
+
+            subtotal = total  # Calculate the subtotal as the total amount in Euros
+
+            grand_total = subtotal  # You can include additional costs like delivery here if needed
+
+            # Redirect to the cart or bag view after updating
+            return redirect('view_bag')
+
+    # Handle other cases or errors as needed
+    return redirect('view_bag')
+
 
 # view for item detail
 

@@ -82,8 +82,24 @@ def view_other_profile(request, username):
     return render(request, 'other_profile.html', context)
 
 
+@login_required
+def mark_as_sold(request, item_id):
+    # Get the item from the database
+    item = get_object_or_404(Item, id=item_id)
+    item = get_object_or_404(Item, id=item_id, seller=request.user)
 
+    if request.method == 'POST':
+        item.is_sold = True
+        item.save()
+        messages.success(request, 'Item marked as sold successfully!')
 
+    # Update the item's status to "sold" (assuming you have a 'status' field in your model)
+    item.status = 'sold'
+    item.save()
+
+    # Redirect back to the user's profile page or some other page
+    # Replace 'user_profile' with the appropriate URL name
+    return redirect('profile')
 
 
 # view for item list page
@@ -126,6 +142,24 @@ def add_item_view(request):
         item_form = ItemForm()
 
     return render(request, 'add_item.html', {'item_form': item_form})
+
+
+@login_required
+def delete_item_view(request, item_id):
+    item = get_object_or_404(Item, id=item_id, seller=request.user)
+
+    if request.method == 'POST':
+        # Update the item's status to "sold" (or your desired status)
+        item.status = 'deleted'  # Update the status to 'deleted' or another value
+        item.delete()
+        messages.success(request, 'Item marked as deleted successfully!')
+
+        # Redirect back to the user's profile page or another page
+        return redirect('profile')  # Replace 'profile' with the appropriate URL name
+
+    return render(request, 'delete_item.html', {'item': item})
+
+
 
 
 def search_results(request):

@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/item_detail.css' %}" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+            <div class="product-image my-5">
+                {% if item.image %}
+                <a href="{{ item.image.url }}" target="_blank">
+                    <img class="product-img" src="{{ item.image.url }}" alt="{{ item.name }}">
+                </a>
+                {% else %}
+                <a href="">
+                    <img class="product-img" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.name }}">
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="product-details mb-5 mt-md-5">
+                <h2>{{ item.name }}</h2>
+                <hr>
+                <p class="price">€{{ item.price }}</p>
+                <p class="status available" id="notbold_description">{{ item.description }}</p>
+                <small>
+                    <p class="quantity">Available: {{ item.quantity }}</p>
+                </small>
+                <b>
+                    <p class="card-text">Condition:
+                </b> {{ item.condition }}</p>
+                <b>
+                    <p>Seller:
+                </b> <a href="{% url 'view_other_profile' username=item.seller.username %}">{{ item.seller.username
+                    }}</a></p>
+
+                <form class="add-to-bag-form" action="{% url 'add_to_bag' item.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <input class="form-control quantity-input" type="number" name="quantity" value="1" min="1"
+                            max="99" data-item_id="{{ item.id }}" id="id_qty_{{ item.id }}">
+                    </div>
+                    <div class="buttons">
+                        <a href="{% url 'item_list' %}" class="btn btn-secondary btn-back">Keep Shopping</a>
+                        <input type="submit" class="btn btn-primary btn-add-to-bag" value="Add to Bag">
+                    </div>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    <div class="error-message" style="color: red;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- This script will validate the number of items beingg added to the bag-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const quantityInput = document.querySelector(".quantity-input");
+    const errorMessage = document.querySelector(".error-message");
+
+    quantityInput.addEventListener("input", function () {
+        const inputQuantity = parseInt(this.value, 10);
+        const availableQuantity = parseInt("{{ item.quantity }}");
+
+        if (isNaN(inputQuantity) || inputQuantity < 1) {
+            errorMessage.textContent = "Quantity must be at least 1.";
+        } else if (inputQuantity > availableQuantity) {
+            errorMessage.textContent = `Only ${availableQuantity} available.`;
+        } else {
+            errorMessage.textContent = "";
+        }
+    });
+
+    // Prevent the form submission if quantity is invalid
+    const form = document.querySelector(".add-to-bag-form");
+    form.addEventListener("submit", function (event) {
+        const formQuantity = parseInt(quantityInput.value, 10);
+        const availableQuantity = parseInt("{{ item.quantity }}");
+
+        if (isNaN(formQuantity) || formQuantity < 1 || formQuantity > availableQuantity) {
+            errorMessage.textContent = "Please correct the quantity.";
+            event.preventDefault(); // Prevent form submission
+        }
+    });
+});
+</script>
+
+{% endblock %}

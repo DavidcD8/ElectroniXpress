@@ -176,6 +176,33 @@ def update_bag(request, item_id):
     return redirect('view_bag')
 
 
+@login_required
+def add_item_view(request):
+    if request.method == 'POST':
+        item_form = ItemForm(request.POST, request.FILES)
+
+        if item_form.is_valid():
+            # Process the form data and save the item
+            item = item_form.save(commit=False)
+            item.seller = request.user
+            item.save()
+            item_form.save_m2m()
+            messages.success(request, 'Item added successfully!')
+            # Redirect to the item list page after successfully adding an item
+            return redirect('item_list')
+        else:
+            messages.error(
+                request, 'Form submission failed. Please check your input.')
+
+    else:
+        item_form = ItemForm()
+
+    return render(request, 'add_item.html', {'item_form': item_form})
+
+
+
+
+
 # view for item detail
 
 

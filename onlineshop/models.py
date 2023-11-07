@@ -2,10 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.utils import timezone
+from django_countries.fields import CountryField
 
 # Create your models here.
-
-
 CONDITION_CHOICES = (
     ("new", "New"),
     ("used", "Used"),
@@ -20,9 +20,6 @@ class Item(models.Model):
     image = models.ImageField()
     seller = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="items")
-    location = models.ForeignKey(
-        Location, on_delete=models.SET_NULL, null=True)
-    created_on = models.DateTimeField(default=timezone.now)
     is_available = models.BooleanField(default=True)
     is_sold = models.BooleanField(default=False)
     quantity = models.PositiveIntegerField(default=1)
@@ -36,7 +33,6 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
-
 
 
 class UserProfile(models.Model):

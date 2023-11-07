@@ -1,9 +1,8 @@
-from .forms import ItemForm, LocationForm
+from .forms import ItemForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from .models import Item
 from .forms import ItemForm
-from .models import Location
 from django.contrib import messages
 from django.urls import reverse
 from django.db import models

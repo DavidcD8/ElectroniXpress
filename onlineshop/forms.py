@@ -59,3 +59,15 @@ class MarkItemAsSoldForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ['is_sold']
+
+
+class CheckoutForm(forms.Form):
+    billing_name = forms.CharField(max_length=255, required=True)
+    billing_address = forms.CharField(max_length=255, required=True)
+    card_number = forms.IntegerField(required=True)
+    expiry_date = forms.IntegerField(required=True)
+    cvv = forms.IntegerField(required=True)
+
+
+class UpdateQuantityForm(forms.Form):
+    quantity = forms.IntegerField(min_value=1, max_value=99)

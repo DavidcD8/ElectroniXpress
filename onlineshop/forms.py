@@ -33,6 +33,12 @@ class UserProfileForm(forms.ModelForm):
             self.fields[field].label = False
 
 
+CONDITION_CHOICES = (
+    ("new", "New"),
+    ("used", "Used"),
+)
+
+
 class ItemForm(forms.ModelForm):
     condition = forms.ChoiceField(choices=CONDITION_CHOICES, label="Condition")
 
@@ -42,20 +48,14 @@ class ItemForm(forms.ModelForm):
                   'quantity', 'is_available', 'condition']
 
 
-# You can Define a list of location choices
-EXTRA_LOCATIONS = [
-    (1, "Dublin"),
-    (2, "Galway"),
-    (3, "Limerick"),
-
-]
+class EditItemForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = ['name', 'description', 'price', 'image',
+                  'quantity', 'is_available', 'condition']
 
 
-class LocationForm(forms.Form):
-    # This will aloow extra locations
-    location_choices = [(0, "Cork")] + EXTRA_LOCATIONS
-
-    location = forms.ChoiceField(
-        choices=location_choices,
-        required=False
-    )
+class MarkItemAsSoldForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = ['is_sold']

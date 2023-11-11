@@ -23,10 +23,9 @@ DEBUG = True
  
  
 ALLOWED_HOSTS = [
-   '8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com',
     '127.0.0.1',
     '8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
-    'localhost','https://onlineshopfirst-9d7d819c65b1.herokuapp.com','localhost']
+    'localhost','https://onlineshopfirst-9d7d819c65b1.herokuapp.com']
 
 FREE_DELIVERY_THRESHOLD = 100
 STANDARD_DELIVERY_PERCENTAGE = 5

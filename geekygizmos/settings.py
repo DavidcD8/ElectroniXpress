@@ -1,6 +1,7 @@
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,13 +11,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-wb#773q^9s81-)(q!#q!jc2j$ee_c@_*2de+lt-n(h#w^674(8'
-
+ 
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ 
+ 
 ALLOWED_HOSTS = [
-    '8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com', '127.0.0.1']
+   '8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com',
+    '127.0.0.1',
+    '8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
+    'localhost','https://onlineshopfirst-9d7d819c65b1.herokuapp.com','localhost']
+
 FREE_DELIVERY_THRESHOLD = 100
 STANDARD_DELIVERY_PERCENTAGE = 5
 # Application definition
@@ -49,6 +56,8 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 ROOT_URLCONF = 'geekygizmos.urls'
@@ -79,7 +88,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+#ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_SIGNUP_URL = '/accounts/signup/'
 ACCOUNT_USERNAME_MIN_LENGTH = 4
@@ -91,13 +100,18 @@ WSGI_APPLICATION = 'geekygizmos.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
 
 
 # Password validation
@@ -139,6 +153,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STRIPE_CURRENCY = 'EUR'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
@@ -150,7 +165,11 @@ DEFAULT_FROM_EMAIL = 'gg@example.com'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com']
+    'http://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com',
+    'https://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com',
+    'http://8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
+    'https://8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
+]
 
 
 AUTHENTICATION_BACKENDS = {

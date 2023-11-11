@@ -3,7 +3,6 @@ blinker==1.4
 certifi==2023.7.22
 charset-normalizer==3.3.2
 cryptography==3.4.8
-dbus-python==1.2.18
 defusedxml==0.7.1
 distro==1.7.0
 dj-database-url==2.1.0

@@ -1,1 +1,1 @@
-web: gunicorn geekygizmos.wsgi:application
+web: gunicorn geekygizmos.wsgi

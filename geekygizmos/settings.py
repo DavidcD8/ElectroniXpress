@@ -25,7 +25,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     '8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
-    'localhost','onlineshopfirst-9d7d819c65b1.herokuapp.com']
+   '8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com', 'localhost','8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com']
 
 FREE_DELIVERY_THRESHOLD = 100
 STANDARD_DELIVERY_PERCENTAGE = 5
@@ -168,11 +168,13 @@ DEFAULT_FROM_EMAIL = 'gg@example.com'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+ 
 CSRF_TRUSTED_ORIGINS = [
     'http://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com',
     'https://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com',
     'http://8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
     'https://8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
+    'https://8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com',
 ]
 
 

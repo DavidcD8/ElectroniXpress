@@ -36,15 +36,11 @@ urlpatterns = [
     path('item_list/', views.item_list_view, name='item_list'),
     path('search/', views.search_results, name='search_results'),
     path('bag/', include('bag.urls')),
-    path('cart/', include('bag.urls')),  # Include the 'bag' app's URL patterns
     path('item/<int:item_id>/', views.item_detail, name='item'),
     path('checkout/', include('checkout.urls')),
-
     path('accounts/', include('allauth.urls')),
 ]
 
 if settings.DEBUG:
-   if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL,
-                          document_root=settings.STATIC_ROOT)
-
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

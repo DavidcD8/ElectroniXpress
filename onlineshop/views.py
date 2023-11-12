@@ -168,32 +168,7 @@ def view_other_profile(request, username):
     }
 
     return render(request, 'other_profile.html', context)
-
-
-def view_bag(request):
-    # Retrieve the cart data from the session
-    bag = request.session.get('bag', {})
-
-    # Create a list to store item dictionaries with quantity and total price
-    bag_items = []
-
-    # Calculate the total price for each item and add it to the item dictionary
-    for item_id, quantity in bag.items():
-        item = get_object_or_404(Item, pk=item_id)
-        total_price = item.price * quantity
-        item_dict = {
-            'item': item,
-            'quantity': quantity,
-            'total_price': total_price,
-        }
-        bag_items.append(item_dict)
-
-    context = {
-        'bag_items': bag_items,
-    }
-
-    return render(request, 'bag/bag.html', context)
-
+ 
 
 def update_bag(request, item_id):
     if request.method == 'POST':

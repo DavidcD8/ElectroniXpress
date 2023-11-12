@@ -14,14 +14,17 @@ from .forms import UpdateQuantityForm
 from decimal import Decimal
 from django.utils import timezone
 from .forms import UserProfileForm
+from django.contrib import messages
+
+
 
 
 def ListingView(request):
     return render(request, 'product_list.html')
 
+
+
 # View for home page
-
-
 def Home(request):
     context = {
         'welcome_message': 'Welcome to My Django Web App!',

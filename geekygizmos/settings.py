@@ -18,7 +18,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = False
 
  
 
@@ -46,9 +46,8 @@ INSTALLED_APPS = [
     'checkout',
     'onlineshop',
     'crispy_forms',
-    'whitenoise',
     'storages',
-    
+    'whitenoise'
  
 ]
 
@@ -85,7 +84,7 @@ TEMPLATES = [
             ],
         },
     },
-]
+]   
 
 SITE_ID = 1
 

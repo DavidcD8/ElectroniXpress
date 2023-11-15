@@ -2,11 +2,7 @@ h1,h2,h3,h4,p{
     font-family: 'AR One Sans', sans-serif;
 
 }
-.card-body {
-    padding: 6px;
-    font-family: 'AR One Sans', sans-serif;
-
-  }
+ 
 
   .card {
   
@@ -45,10 +41,10 @@ h1,h2,h3,h4,p{
   @media (max-width: 766px) {
     .card-img, .card-img-top {
       height: 250px;
-      width: 473px;
+      width: 100%;
   }
   .card {
-    width: 472px;
+    width: 100%;
   }
   }
   
@@ -68,7 +64,7 @@ h1,h2,h3,h4,p{
   
   .card-title {
     font-size: 20px;
-    margin: 10px;
+    margin: inherit;
     color: #333333;
   }
   
@@ -97,6 +93,11 @@ h1,h2,h3,h4,p{
     margin-top: 20px;
   }
   
+  .navbar {
+    width: 100% !important;
+  }
+  
+
   .page-item.active .page-link {
     background-color: #11bae4; /* Red color for active page */
     border-color: #ffffff00;

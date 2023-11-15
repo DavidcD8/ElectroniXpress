@@ -1,8 +1,6 @@
-/* add_item.css */
-
-/* Global Styles */
+ 
 body {
-  background-color: #f4f4f4;
+  background-color: #fff;
   font-family: Arial, sans-serif;
 }
 
@@ -12,12 +10,9 @@ body {
 
 /* Modern Form Styles */
 .modern-form {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
   border-radius: 5px;
   padding: 20px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-}
+ }
 
 .modern-form h2 {
   color: #333;
@@ -97,7 +92,7 @@ a:hover {
   text-decoration: underline;
 }
 
-button, input, optgroup, select, textarea {
+  input, optgroup, select, textarea {
   margin: 0;
   font-family: inherit;
   font-size: inherit;

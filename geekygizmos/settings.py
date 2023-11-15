@@ -22,7 +22,7 @@ DEBUG = True
 
  
 
-ALLOWED_HOSTS = [
+ALLOWED_HOSTS = ['8000-davidcd8-electronixpress-d32wv8luco.us2.codeanyapp.com',
     '127.0.0.1',
     '8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
    '8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com', 
@@ -203,6 +203,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
     'https://8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
     'https://8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com',
+    'https://8000-davidcd8-electronixpress-d32wv8luco.us2.codeanyapp.com',
 ]
 
 

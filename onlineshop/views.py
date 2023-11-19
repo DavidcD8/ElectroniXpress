@@ -122,13 +122,12 @@ def delete_item_view(request, item_id):
     item = get_object_or_404(Item, id=item_id, seller=request.user)
 
     if request.method == 'POST':
-        # Update the item's status to "sold" (or your desired status)
+        # Update the item's status to "sold"  
         item.status = 'deleted'  # Update the status to 'deleted' or another value
         item.delete()
         messages.success(request, 'Item marked as deleted successfully!')
 
         # Redirect back to the user's profile page or another page
-        # Replace 'profile' with the appropriate URL name
         return redirect('profile')
 
     return render(request, 'delete_item.html', {'item': item})
@@ -145,12 +144,11 @@ def mark_as_sold(request, item_id):
         item.save()
         messages.success(request, 'Item marked as sold successfully!')
 
-    # Update the item's status to "sold" (assuming you have a 'status' field in your model)
+    # Update the item's status to "sold"  
     item.status = 'sold'
     item.save()
 
     # Redirect back to the user's profile page or some other page
-    # Replace 'user_profile' with the appropriate URL name
     return redirect('profile')
 
 
@@ -234,9 +232,6 @@ def process_checkout_view(request):
         form = CheckoutForm(request.POST)
 
         if form.is_valid():
-            # Form data is valid, process the checkout logic here
-            # For example, save the order, charge the card, etc.
-
             # Redirect to a success page after successful checkout
             messages.success(request, 'Order placed successfully!')
             return redirect('order_success')

@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'checkout',
     'onlineshop',
     'crispy_forms',
-    'whitenoise'
+    'whitenoise',
+    'bootstrap4',
 
 ]
 

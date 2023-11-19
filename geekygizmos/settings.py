@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'onlineshop',
     'crispy_forms',
     'whitenoise',
-    'bootstrap4',
+    'crispy_bootstrap4',
 
 ]
 

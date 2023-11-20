@@ -5,13 +5,12 @@ h1,h2,h3,h4,p{
  
 
   .card {
-  
     --bs-card-spacer-y: 1rem;
     --bs-card-spacer-x: 1rem;
     --bs-card-title-spacer-y: 0.5rem;
     --bs-card-border-width: 1px;
-    --bs-card-border-color:  white;
-    --bs-card-border-radius: 0.375rem;
+    --bs-card-border-color: rgb(239, 239, 239);
+    --bs-card-border-radius: 4px;
     --bs-card-box-shadow: ;
     --bs-card-inner-border-radius: calc(0.375rem - 1px);
     --bs-card-cap-padding-y: 0.5rem;
@@ -111,11 +110,11 @@ h1,h2,h3,h4,p{
     color: #11bae4; /* Darker red color on hover */
   }
   .btn-outline-danger {
-    background-color: #9ac4f2;   
+    background-color: #fd3a2b;   
     --bs-btn-color: #ffffff;
-    --bs-btn-border-color: #9ac4f2;
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #4791e0;
+    --bs-btn-border-color: #fd3a2b;
+    --bs-btn-hover-color: #fd3a2b;
+    --bs-btn-hover-bg: #ac0b00;
     --bs-btn-hover-border-color: #ffffff;
     --bs-btn-focus-shadow-rgb: 220,53,69;
     --bs-btn-active-color: #fff;

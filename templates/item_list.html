@@ -17,7 +17,7 @@
             <img src="{% if item.image %}{{ item.image.url }}{% else %}{% static 'default-image.jpg' %}{% endif %}" class="card-img-top" alt="{{ item.name }}">
             <div class="card-body">
               <h5 class="card-title">{{ item.name }}</h5>
-              <p class="card-text">{{ item.description }}</p>
+              <br>
               <p class="card-text">Price: ${{ item.price }}</p>
               <p class="card-text">Seller: <a href="{% url 'profile' item.seller.username %}">{{ item.seller }}</a></p>
               <p class="card-text">Condition: {{ item.condition }}</p>
@@ -29,6 +29,7 @@
             </div>
           </div>
         </div>
+        
       {% empty %}
         <p class="text-center">No products available.</p>
       {% endfor %}

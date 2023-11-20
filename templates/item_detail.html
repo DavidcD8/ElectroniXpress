@@ -27,12 +27,15 @@
                 {% endif %}
             </div>
         </div>
+
+   
+
+        
         <div class="col-12 col-md-6 col-lg-4">
             <div class="product-details mb-5 mt-md-5">
                 <h2>{{ item.name }}</h2>
                 <hr>
                 <p class="price">€{{ item.price }}</p>
-                <p class="status available" id="notbold_description">{{ item.description }}</p>
                 <small><p class="quantity">Available: {{ item.quantity }}</p></small>
                 <b><p class="card-text">Condition:</b> {{ item.condition }}</p>
                 <b><p>Seller:</b> <a href="{% url 'view_other_profile' username=item.seller.username %}">{{ item.seller.username }}</a></p>
@@ -52,6 +55,13 @@
                     <div class="error-message" style="color: red;"></div>
                 </form>
             </div>
+        </div>
+        <p>ITEM DESCRIPTION</p>
+        <hr>
+        <div class="col-lg-4 col-md-6 mb-4 description">
+            <p class="card-text">{{ item.description }}</p>
+
+
         </div>
     </div>
 </div>

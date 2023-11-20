@@ -17,18 +17,18 @@
   
   /* Styling for the welcome message */
   .welcome {
-    background-color: rgb(149 149 149 / 70%);
     padding: 20px;
     border-radius: 32px;
     max-width: 800px;
     font-family: 'AR One Sans', sans-serif;
+    color: black;
 }
   
   /* Style for the heading in the welcome message */
   .welcome h1 {
     font-size: 36px;
     margin-bottom: 10px;
-    color: wheat;
+    color: #fd3a2b;
   }
   
   /* Style for the description in the welcome message */

@@ -1,6 +1,5 @@
-/* styles.css */
-
-/* Global Styles */
+ 
+ 
 body {
     background-color: #f5f5f5;
     font-family: Arial, sans-serif;
@@ -8,6 +7,10 @@ body {
     padding: 0;
   }
   
+.description{ 
+    border: solid 1px rgb(255, 255, 255);
+}
+
   .container {
     margin-top: 20px;
   }
@@ -73,7 +76,7 @@ body {
   /* Seller Styles */
   .product-details a {
     text-decoration: none;
-    color: #ffffff;
+    color: #010101;
   }
   
   /* Form Styles */
@@ -97,21 +100,20 @@ body {
     flex: 1;
     padding: 5px 10px;
     font-size: 0.9rem;
+    color: white !important;
   }
   
-  .btn-back {
-    margin-right: 10px;
-  }
+ 
   
   .btn-add-to-bag {
-    background-color: #9ac4f2;
+    background-color: #fd3a2b;
     color: #fff;
     border: 1px solid white;
   }
   
   .btn-add-to-bag:hover {
-    background-color: #7bb4f2;
-    border: 1px solid 9ac4f2;
+    background-color: #ac0b00;
+    border: 1px solid #ac0b00;
   }
   
   /* Error Message Styles */

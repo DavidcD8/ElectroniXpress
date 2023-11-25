@@ -98,16 +98,16 @@ h1,h2,h3,h4,p{
   
 
   .page-item.active .page-link {
-    background-color: #11bae4; /* Red color for active page */
+    background-color: #11bae4; 
     border-color: #ffffff00;
   }
   
   .page-link {
-    color: #11bae4; /* Red color for page links */
+    color: #11bae4;  
   }
   
   .page-link:hover {
-    color: #11bae4; /* Darker red color on hover */
+    color: #11bae4;  
   }
   .btn-outline-danger {
     background-color: #fd3a2b;   
@@ -138,19 +138,18 @@ h1,h2,h3,h4,p{
   .pagination {
   padding: 10px;
   justify-content: center;
-  background-color: #f0f0f0; /* Choose a background color of your choice */
-  }
+   }
   
   /* Change the color of the pagination buttons */
   .pagination .page-link {
-  border-color: #ffffff; /* Change to your desired color */
-  color: #6c6c6c; /* Change to your desired text color */
+  border-color: #cbcbcb;  
+  color: #6c6c6c 
   }
   
   /* Change the shape of the pagination buttons to rounded */
   .pagination .page-item {
-  border-radius: 50%; /* Makes the buttons circular */
-  margin: 0 5px; /* Adjust the margin for spacing between buttons */
+  border-radius: 50%;  
+  margin: 0 5px;  
   }
   
   /* Style the active pagination button */

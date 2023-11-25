@@ -1,5 +1,4 @@
-/* styles.css */
-
+ 
 /* Header Container */
 .header-container {
     background-color: #333;
@@ -94,3 +93,57 @@ body {
     line-height: 1.6;
     color: #333;
 }
+
+
+@media only screen and (max-width: 768px) {
+    /* Adjust styles for smaller screens */
+
+    /* Make the table responsive */
+    .table-bordered {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    /* Ensure proper styling for table cells */
+    .table-bordered td, .table-bordered th {
+        text-align: left;
+    }
+
+    /* Hide the original table header on smaller screens */
+    .table-bordered thead {
+        display: none;
+    }
+
+    /* Display table headings above the data for mobile */
+    .table-bordered tbody {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .table-bordered tbody tr {
+        width: 100%;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+        margin-bottom: 15px;
+    }
+
+    /* Add more responsive styles as needed */
+    .container {
+        padding: 10px;
+    }
+
+    .header-container {
+        padding: 10px;
+    }
+
+    .table img {
+        max-width: 80px;
+    }
+    .table-bordered>:not(caption)>*>* {
+    border-width: 0 1px;
+}
+}
+

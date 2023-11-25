@@ -20,26 +20,20 @@
 
             <div class="table-responsive rounded">
                 <table class="table table-bordered">
-                    <thead class="bg-dark text-white">
-                        <tr>
-                            <th>Item</th>
-                            <th>Quantity</th>
-                            <th>Price (€)</th>
-                            <th>Total (€)</th>
-                            <th>Photo</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         {% for item_dict in bag_items %}
                         {% if item_dict.quantity > 0 %}
                         <tr>
                             <td class="align-middle">
+                                <strong>Item:</strong>
                                 <a href="{% url 'item_detail' item_dict.item.id %}" class="text-decoration-none">
                                     {{ item_dict.item.name }}
                                 </a>
                             </td>
+                        </tr>
+                        <tr>
                             <td class="align-middle">
+                                <strong>Quantity:</strong>
                                 <form method="POST" action="{% url 'update_bag' item_dict.item.id %}">
                                     {% csrf_token %}
                                     <div class="input-group">
@@ -59,12 +53,28 @@
                                     </div>
                                 </form>
                             </td>
-                            <td class="align-middle">{{ item_dict.item.price | floatformat:2 }}</td>
-                            <td class="align-middle">{{ item_dict.total_price | floatformat:2}}</td>
+                        </tr>
+                        <tr>
                             <td class="align-middle">
+                                <strong>Price (€):</strong>
+                                {{ item_dict.item.price | floatformat:2 }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">
+                                <strong>Total (€):</strong>
+                                {{ item_dict.total_price | floatformat:2}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">
+                                <strong>Photo:</strong>
                                 <img src="{{ item_dict.item.image.url }}" alt="{{ item_dict.item.name }}" width="100">
                             </td>
+                        </tr>
+                        <tr>
                             <td class="align-middle">
+                                <strong>Actions:</strong>
                                 <form method="POST" action="{% url 'remove_from_bag' item_dict.item.id %}">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-outline-danger">
@@ -75,13 +85,13 @@
                         </tr>
                         {% endif %}
                         {% endfor %}
+                        <tr>
+                            <td class="font-weight-bold text-end" colspan="2">
+                                <strong>Grand Total (€):</strong>
+                            </td>
+                            <td class="font-weight-bold" colspan="4">{{ grand_total | floatformat:2}}</td>
+                        </tr>
                     </tbody>
-                    <tr>
-                        <td colspan="3"></td>
-                        <td class="font-weight-bold text-end">Grand Total (€):</td>
-                        <td class="font-weight-bold">{{ grand_total | floatformat:2}}</td>
-                        <td></td>
-                    </tr>
                 </table>
             </div>
 

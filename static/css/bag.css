@@ -1,121 +1,89 @@
  
-/* Header Container */
-.header-container {
-    background-color: #333;
-    padding: 20px;
-    color: #fff;
-    text-align: center;
-}
-
-/* Table Styles */
-.table-bordered {
-    border: 1px solid #e1e1e1;
-    width: 100%;
-}
-
-/* Table Header Styles */
-.table-bordered thead th {
-    background-color: #000b17;
-    color: #fff;
-}
-
-/* Table Row Styles */
-.table-bordered tbody tr {
-    background-color: #f9f9f9;
-}
-
-/* Update and Remove Buttons */
-.btn-outline-primary, .btn-outline-danger {
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Checkout Button */
-.btn-secondary {
-    background-color: #28a745;
-    color: #fff;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Continue Shopping Button */
-.btn-outline-primary.btn-lg {
-    background-color: #007bff;
-    color: #fff;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Grand Total Styles */
-.font-weight-bold {
-    font-weight: bold;
-    font-size: 24px;
-    color: #333;
-}
-
-/* Image Styles */
-.table img {
-    max-width: 100px;
-    border: 1px solid #e1e1e1;
-    border-radius: 4px;
-    display: block;
-    margin: 0 auto;
-}
-
-/* Additional Styling for Link */
-.text-decoration-none {
-    text-decoration: none;
-    color: #007bff;
-}
-
-/* Overall Container Styles */
 .container {
-    padding: 20px;
+    margin-top: 30px;
+    padding: 10px;
 }
 
-/* Center Content */
-.text-center {
+.shopping-cart {
+    margin-bottom: 50px;
+}
+
+.shopping-cart th, .shopping-cart td {
+    text-align: center;
+    font-size: 14px;
+}
+
+.product-item {
+    margin-bottom: 15px;
     text-align: center;
 }
 
-/* Modern Typography */
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
+.product-thumb {
+    margin-bottom: 10px;
+}
+
+.product-title a {
     color: #333;
+    text-decoration: none;
+}
+
+.count-input {
+    text-align: center;
+}
+
+.qty_input {
+    width: 40px;
+}
+
+.input-group button {
+    cursor: pointer;
+    font-size: 10px;
 }
 
 
-@media only screen and (max-width: 768px) {
-    /* Adjust styles for smaller screens */
+.update-cart, .remove-from-cart {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #007bff;
+    margin-top: 5px;
+}
 
-    /* Make the table responsive */
+.update-cart:hover, .remove-from-cart:hover {
+    text-decoration: underline;
+}
+
+.shopping-cart-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-outline-secondary, .btn-primary, .btn-success {
+    margin-bottom: 10px;
+}
+
+/* Responsive Design for Mobile */
+@media only screen and (max-width: 767px) {
+
+    .input-group:not(.has-validation)>.dropdown-toggle:nth-last-child(n+3), .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-control, .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-select, .input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
+        width: 4px;
+    }
+
+    
     .table-bordered {
         display: block;
         width: 100%;
         overflow-x: auto;
     }
 
-    /* Ensure proper styling for table cells */
     .table-bordered td, .table-bordered th {
         text-align: left;
     }
 
-    /* Hide the original table header on smaller screens */
     .table-bordered thead {
         display: none;
     }
 
-    /* Display table headings above the data for mobile */
     .table-bordered tbody {
         display: flex;
         flex-direction: column;
@@ -130,7 +98,6 @@ body {
         margin-bottom: 15px;
     }
 
-    /* Add more responsive styles as needed */
     .container {
         padding: 10px;
     }
@@ -142,8 +109,59 @@ body {
     .table img {
         max-width: 80px;
     }
+
     .table-bordered>:not(caption)>*>* {
-    border-width: 0 1px;
-}
+        border-width: 0 1px;
+    }
 }
 
+
+
+
+
+@media only screen and (max-width: 375px) {
+    .input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
+        font-size: 9px;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    .input-group button {
+        cursor: pointer;
+        font-size: 6px;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        width: 44px;
+        left: 1px;
+    }
+
+    .product-item {
+        margin-bottom: 3px;
+    }
+
+    .shopping-cart th, .shopping-cart td {
+        font-size: 10px;
+    }
+
+    .qty_input {
+        width: 2px;
+    }
+
+    .table img {
+        max-width: 40px;
+    }
+
+    .update-cart, .remove-from-cart {
+        font-size: 10px;
+        margin-top: 3px;
+    }
+
+    /* Make the update buttons smaller */
+    .update-cart {
+        font-size: 8px;
+        margin-top: 2px;
+        padding: 5px 8px;
+    }
+  
+   
+}

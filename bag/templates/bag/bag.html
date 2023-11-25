@@ -2,112 +2,128 @@
 {% load static %}
 
 {% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
     </div>
-</div>
 {% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/bag.css' %}" />  
+    <link rel="stylesheet" href="{% static 'css/bag.css' %}" />
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            {% if bag_items %}
-            <h1 class="text-center mt-4 mb-5">Your Shopping Bag</h1>
-
-            <div class="table-responsive rounded">
-                <table class="table table-bordered">
-                    <tbody>
-                        {% for item_dict in bag_items %}
+    <div class="container padding-bottom-3x mb-1">
+        <!-- Shopping Cart-->
+        <div class="table-responsive shopping-cart">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Price per Item</th>
+                        <th class="text-center">Subtotal</th>
+                        <th class="text-center">Update</th>
+                        <th class="text-center">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item_dict in bag_items %}
                         {% if item_dict.quantity > 0 %}
-                        <tr>
-                            <td class="align-middle">
-                                <strong>Item:</strong>
-                                <a href="{% url 'item_detail' item_dict.item.id %}" class="text-decoration-none">
-                                    {{ item_dict.item.name }}
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">
-                                <strong>Quantity:</strong>
-                                <form method="POST" action="{% url 'update_bag' item_dict.item.id %}">
-                                    {% csrf_token %}
-                                    <div class="input-group">
-                                        <input
-                                            type="number"
-                                            name="quantity"
-                                            value="{{ item_dict.quantity }}"
-                                            min="1"
-                                            max="99"
-                                            class="form-control qty_input"
-                                            id="id_qty_{{ item_dict.item.id }}"
-                                            data-item_id="{{ item_dict.item.id }}"
-                                        >
-                                        <button type="submit" class="btn btn-outline-primary">
+                            <tr>
+                                <td>
+                                    <div class="product-item">
+                                        <a class="product-thumb" href="{% url 'item_detail' item_dict.item.id %}">
+                                            <img src="{{ item_dict.item.image.url }}" alt="{{ item_dict.item.name }}">
+                                        </a>
+                                        <div class="product-info">
+                                            <h4 class="product-title">
+                                                <a href="{% url 'item_detail' item_dict.item.id %}">
+                                                    {{ item_dict.item.name }}
+                                                </a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="count-input">
+                                        <form method="POST" action="{% url 'update_bag' item_dict.item.id %}">
+                                            {% csrf_token %}
+                                            <div class="input-group">
+                                                <input
+                                                    type="number"
+                                                    name="quantity"
+                                                    value="{{ item_dict.quantity }}"
+                                                    min="1"
+                                                    max="99"
+                                                    class="form-control qty_input"
+                                                    id="id_qty_{{ item_dict.item.id }}"
+                                                    data-item_id="{{ item_dict.item.id }}"
+                                                >
+                                                <button type="submit" class="btn btn-outline-primary">
+                                                    Update
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </td>
+                                <td class="text-center text-lg text-medium">{{ item_dict.item.price | floatformat:2 }}</td>
+                                <td class="text-center text-lg text-medium">{{ item_dict.total_price | floatformat:2 }}</td>
+                                <td class="text-center">
+                                    <form method="POST" action="{% url 'update_bag' item_dict.item.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="update-cart" data-toggle="tooltip" title="Update quantity">
                                             Update
                                         </button>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">
-                                <strong>Price (€):</strong>
-                                {{ item_dict.item.price | floatformat:2 }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">
-                                <strong>Total (€):</strong>
-                                {{ item_dict.total_price | floatformat:2}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">
-                                <strong>Photo:</strong>
-                                <img src="{{ item_dict.item.image.url }}" alt="{{ item_dict.item.name }}" width="100">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">
-                                <strong>Actions:</strong>
-                                <form method="POST" action="{% url 'remove_from_bag' item_dict.item.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-outline-danger">
-                                        Remove
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
+                                    </form>
+                                </td>
+                                <td class="text-center">
+                                    <form method="POST" action="{% url 'remove_from_bag' item_dict.item.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="remove-from-cart" data-toggle="tooltip" title="Remove item">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
                         {% endif %}
-                        {% endfor %}
-                        <tr>
-                            <td class="font-weight-bold text-end" colspan="2">
-                                <strong>Grand Total (€):</strong>
-                            </td>
-                            <td class="font-weight-bold" colspan="4">{{ grand_total | floatformat:2}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="3" class="font-weight-bold text-end">Grand Total (€):</td>
+                        <td class="font-weight-bold text-center">{{ grand_total | floatformat:2 }}</td>
+                        <td colspan="2"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-            <div class="text-center mt-4">
-                <a href="{% url 'checkout' %}" class="btn btn-secondary">Checkout</a>
-            </div>
-            
-            {% else %}
-            <p class="lead text-center mt-4">Your bag is empty.</p>
-            <div class="text-center mt-4">
-                <a href="{% url 'item_list' %}" class="btn btn-outline-primary btn-lg">
-                    <i class="fas fa-shopping-cart me-2"></i> Continue Shopping
+        <div class="shopping-cart-footer">
+            <div class="column">
+                <a class="btn btn-outline-secondary" href="{% url 'item_list' %}">
+                    <i class="icon-arrow-left"></i>&nbsp;Back to Shopping
                 </a>
             </div>
-            {% endif %}
+            <div class="column">
+               
+                <a class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+            </div>
         </div>
     </div>
-</div>
+
+    <script>
+        function increaseQuantity(btn) {
+            var select = btn.parentNode.querySelector('select');
+            var currentValue = parseInt(select.value);
+            if (currentValue < 5) {
+                select.value = currentValue + 1;
+            }
+        }
+
+        function decreaseQuantity(btn) {
+            var select = btn.parentNode.querySelector('select');
+            var currentValue = parseInt(select.value);
+            if (currentValue > 1) {
+                select.value = currentValue - 1;
+            }
+        }
+    </script>
 {% endblock %}

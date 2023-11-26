@@ -7,20 +7,23 @@
 <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
 
 <h1 class="profile-name">{{ user.username }}</h1>
-<div class="profile-container">
+
   
  
 
 <!-- Profile Info -->
 <div class="items-section profile-info-section">
-  <form method="post" enctype="multipart/form-data">
+    <hr>
+    <h2>User Profile Information</h2>
+   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="save-button">Save</button>
   </form>
 </div>
-
-
+<br>    
+<hr>
+<div class="profile-container"></div>
 <!-- Selling Items -->
 <div class="items-section">
   <h2 class="section-heading"><i class="fas fa-shopping-cart"></i> Selling Items</h2>
@@ -31,8 +34,7 @@
       <h3 class="item-name">{{ item.name }}</h3>
       <p class="item-description">{{ item.description }}</p>
       <p class="item-price">Price: ${{ item.price }}</p>
-      <!-- Add more product details or features as needed -->
-      <!-- Mark as Sold Button -->
+       <!-- Mark as Sold Button -->
       {% if user.is_authenticated and item.seller == user %}
       <!-- Edit and Delete Buttons for the item owner -->
       <div class="item-actions">
@@ -61,8 +63,7 @@
       <h3 class="item-name">{{ product.name }}</h3>
       <p class="item-description">{{ product.description }}</p>
       <p class="item-price">Price: ${{ product.price }}</p>
-      <!-- Add more product details or features as needed -->
-      </div>
+       </div>
     {% endfor %}
   </div>
 </div>

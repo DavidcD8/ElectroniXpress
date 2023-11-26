@@ -54,6 +54,16 @@ def Profile(request):
 
     # Check if a UserProfile instance exists for the current user
     profile, created = UserProfile.objects.get_or_create(user=request.user)
+    
+    # Check if there is checkout data stored in the session
+    checkout_data = request.session.get('checkout_data', None)
+
+    # If checkout data is available, update the UserProfileForm instance
+    if checkout_data:
+        form = UserProfileForm(request.POST or None, instance=profile, initial=checkout_data)
+    else:
+        form = UserProfileForm(request.POST or None, instance=profile)
+
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)

@@ -17,8 +17,14 @@ from .forms import UserProfileForm
 from django.contrib import messages
 
 
+# View For 404 Page
+def handler404(request, exception):
+    return render(request, '404.html', status=404)
 
 
+
+
+# View for the listings page
 def ListingView(request):
     return render(request, 'product_list.html')
 

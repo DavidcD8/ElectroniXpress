@@ -180,8 +180,12 @@ The application includes security measures such as CSRF protection and password 
 
 ## Bugs Fixed
 
- 
+- 'User' object has no attribute 'profile'
+    * SOLUTION: Modifying the signal to create and save profile   
+
+- Forbidden CSRF verification failed
+   * SOLUTION: Added URL to CSRF_TRUSTED_ORIGINS =[]
 
 ## Code Validator Results
 
-I 
+

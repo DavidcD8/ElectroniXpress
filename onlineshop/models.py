@@ -44,9 +44,7 @@ class Item(models.Model):
 
 
 class UserProfile(models.Model):
-    """
-    A user profile model for maintaining default delivery information and order history
-    """
+   
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
     default_phone_number = models.CharField(max_length=20, null=True, blank=True)
@@ -66,9 +64,13 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
 
+# Save the user profile when a User is saved
+
+
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
+
 
 class Message(models.Model):
     sender = models.ForeignKey(User, related_name='sent_messages', on_delete=models.CASCADE)

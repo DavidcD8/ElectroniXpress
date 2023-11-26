@@ -19,10 +19,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = False
-
  
-
-ALLOWED_HOSTS = ['8000-davidcd8-electronixpress-d32wv8luco.us2.codeanyapp.com',
+ALLOWED_HOSTS = ['https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com/admin/login/?next=/admin/', '8000-davidcd8-electronixpress-d32wv8luco.us2.codeanyapp.com',
     '127.0.0.1','8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com',
     '8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
    '8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com', 
@@ -178,13 +176,14 @@ if 'USE_AWS' in os.environ:
 
 
 
+WHITENOISE_USE_FINDERS = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 STRIPE_CURRENCY = 'EUR'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
@@ -196,7 +195,7 @@ DEFAULT_FROM_EMAIL = 'gg@example.com'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
  
-CSRF_TRUSTED_ORIGINS = [
+CSRF_TRUSTED_ORIGINS = ['https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com/admin/login/?next=/admin/',
     'http://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com',
     'https://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com',
     'http://8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',

@@ -37,15 +37,14 @@ def Home(request):
     }
     return render(request, 'home.html', context)
 
-
+@login_required
 def Profile(request):
     context = {
         'welcome_message': 'Welcome to My Django Web App!',
     }
 
     # Retrieve items associated with the logged- d user that are available for sale
-    seller_items = Item.objects.filter(seller=request.user, is_available=True)
-    seller_items = Item.objects.filter(seller=request.user, is_sold=False)
+    seller_items = Item.objects.filter(seller=request.user, is_available=True, is_sold=False)
 
     # Retrieve items associated with the logged-in user that are marked as sold
     sold_items = Item.objects.filter(seller=request.user, is_sold=True)

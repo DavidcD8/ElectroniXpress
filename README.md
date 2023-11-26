@@ -186,6 +186,12 @@ The application includes security measures such as CSRF protection and password 
 - Forbidden CSRF verification failed
    * SOLUTION: Added URL to CSRF_TRUSTED_ORIGINS =[]
 
+- Server Error 500 
+    * SOLUTION: Change whitenoise to STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+    and use HITENOISE_USE_FINDERS = True to apply CSS 
+
+
 ## Code Validator Results
 
 

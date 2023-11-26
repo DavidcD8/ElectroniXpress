@@ -2,16 +2,14 @@
 {% load static %}
 
 {% block content %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/animate.min.css' %}" />
 <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
 
 <h1 class="profile-name">{{ user.username }}</h1>
 <div class="profile-container">
   
-  <!-- Profile Photo Frame -->
-  <div class="profile-photo-frame">
-    <img src="{% static 'gpu.jpg' %}" alt="{{ request.user.username }}'s Profile Photo" class="profile-photo" />
-  </div>
+ 
 
 <!-- Profile Info -->
 <div class="items-section profile-info-section">

@@ -1,0 +1,82 @@
+ 
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #333;
+}
+
+/* Social Account Providers */
+.socialaccount_ballot {
+    display: flex;
+    align-items: center;
+}
+
+.socialaccount_providers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.socialaccount_providers li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.login-or {
+    margin: 0 10px;
+}
+
+/* Form Styles */
+.login {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.button.secondaryAction {
+    display: block;
+    text-decoration: none;
+    background-color: #ccc;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.primaryAction {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.primaryAction:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 767px) {
+    .login {
+        max-width: 100%;
+        padding: 10px;
+    }
+}

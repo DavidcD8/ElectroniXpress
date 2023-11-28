@@ -1,0 +1,19 @@
+{% extends "base.html" %}  {% load static %} {% load crispy_forms_tags %}{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'css/signup.css' %}" />  
+<div class="container">
+  <h2>Sign Up</h2>
+  <form method="post" class="signup">
+    {% csrf_token %} {{ form|crispy }} {% if form.errors %}
+    <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+  </form>
+  <p>
+    Already have an account?
+    <a href="{% url 'account_login' %}">Sign in here</a>
+  </p>
+</div>
+{% endblock %}

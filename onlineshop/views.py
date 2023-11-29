@@ -15,7 +15,8 @@ from decimal import Decimal
 from django.utils import timezone
 from .forms import UserProfileForm
 from django.contrib import messages
-
+from .models import Message
+from .forms import MessageForm
 
 # View For 404 Page
 def handler404(request, exception):
@@ -176,6 +177,7 @@ def view_other_profile(request, username):
         seller=user_profile.user, is_available=True)
 
     context = {
+        'recipient': user_profile.user,
         'user_profile': user_profile,
         'user_items': user_items,
     }
@@ -259,3 +261,44 @@ def process_checkout_view(request):
         form = CheckoutForm()
 
     return render(request, 'checkout.html', {'form': form})
+
+
+
+
+@login_required
+def send_message(request, recipient_id):
+    recipient = get_object_or_404(User, pk=recipient_id)
+
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            content = form.cleaned_data['content']
+            message = Message.objects.create(sender=request.user, recipient=recipient, content=content)
+
+            # Add this print statement to check if the message is created
+            print(f'Message created: {message}')
+
+            return redirect('inbox')
+    else:
+        form = MessageForm()
+
+    return render(request, 'send_message.html', {'form': form, 'recipient': recipient})
+
+
+
+#inbox view
+@login_required
+def inbox(request):
+    received_messages = Message.objects.filter(recipient=request.user)
+    return render(request, 'inbox.html', {'received_messages': received_messages})
+
+
+ 
+
+@login_required
+def get_user_or_404(user_id):
+    try:
+        return User.objects.get(pk=user_id)
+    except User.DoesNotExist:
+        # Log a message or handle the error in a way that makes sense for your application
+        raise Http404("User does not exist")

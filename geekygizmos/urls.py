@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 from allauth.account.views import LogoutView
 from allauth.account.views import LoginView
 from django.views.generic import RedirectView
+from onlineshop.views import send_message, inbox
 
 
 handler404 = 'onlineshop.views.handler404'
@@ -41,6 +42,8 @@ urlpatterns = [
     path('item/<int:item_id>/', views.item_detail, name='item'),
     path('checkout/', include('checkout.urls')),
     path('accounts/', include('allauth.urls')),
+    path('send_message/<int:recipient_id>/', send_message, name='send_message'),
+    path('inbox/', inbox, name='inbox'),
 ]
 
 if settings.DEBUG:

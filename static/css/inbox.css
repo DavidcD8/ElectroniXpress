@@ -1,0 +1,40 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #fff;
+}
+
+.message p {
+    margin: 0;
+}
+
+.sender {
+    font-weight: bold;
+    color: #333;
+}
+
+.timestamp {
+    font-size: 12px;
+    color: #777;
+}
+
+/* Add more styles as needed */

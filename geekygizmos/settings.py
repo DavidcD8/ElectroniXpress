@@ -18,9 +18,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
  
-ALLOWED_HOSTS = ['https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com/admin/login/?next=/admin/', '8000-davidcd8-electronixpress-d32wv8luco.us2.codeanyapp.com',
+ALLOWED_HOSTS = ['8001-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com',
     '127.0.0.1','8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com',
     '8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
    '8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com', 
@@ -90,7 +90,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+#ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_SIGNUP_URL = '/accounts/signup/'
 ACCOUNT_USERNAME_MIN_LENGTH = 4
@@ -214,6 +214,7 @@ CSRF_TRUSTED_ORIGINS = ['https://8000-davidcd8-electronixpress-twqcrugx1c.us2.co
     'https://8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com',
     'https://8000-davidcd8-electronixpress-d32wv8luco.us2.codeanyapp.com',
     'https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com',
+    'https://8001-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com'
 ]
 
 

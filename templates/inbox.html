@@ -1,20 +1,34 @@
+<!-- inbox.html -->
 {% extends "base.html" %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/inbox.css' %}">
 
 {% block content %}
-<body>
-    <div class="container">
-        {% if received_messages %}
-            {% for message in received_messages %}
-                <div class="message">
+<div class="container">
+    <h2>Inbox</h2>
+
+    {% for conversation in conversations %}
+        <div class="card conversation">
+            {% for message in conversation %}
+                <a href="{% url 'view_message' message.id %}" class="card">
                     <p class="sender">{{ message.sender.username }}</p>
                     <p>{{ message.content }}</p>
                     <p class="timestamp">{{ message.timestamp }}</p>
-                </div>
+                </a>
             {% endfor %}
-        {% else %}
-            <p>No messages</p>
-        {% endif %}
-    </div>
-    {% endblock %}
+        </div>
+    {% endfor %}
+
+    <!-- Reply Form -->
+    {% if recipient %}
+        <div class="card reply-form">
+            <form method="post" action="{% url 'send_message' recipient_id=recipient.id %}">
+                {% csrf_token %}
+                {{ reply_form.as_p }}
+                {{ reply_form.errors }}
+                <button type="submit">Reply</button>
+            </form>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

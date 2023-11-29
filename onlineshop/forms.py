@@ -73,6 +73,4 @@ class CheckoutForm(forms.Form):
 class UpdateQuantityForm(forms.Form):
     quantity = forms.IntegerField(min_value=1, max_value=99)
 
-
-class MessageForm(forms.Form):
-    content = forms.CharField(widget=forms.Textarea)
+ 

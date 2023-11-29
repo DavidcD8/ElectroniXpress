@@ -1,4 +1,7 @@
-
+img, svg {
+    vertical-align: middle;
+    width: 200px;
+}
         .container {
             margin-top: 30px;
             padding: 10px;

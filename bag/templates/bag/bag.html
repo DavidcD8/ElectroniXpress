@@ -68,14 +68,6 @@
                                 <td class="text-center text-lg text-medium">{{ item_dict.item.price | floatformat:2 }}</td>
                                 <td class="text-center text-lg text-medium">{{ item_dict.total_price | floatformat:2 }}</td>
                                 <td class="text-center">
-                                    <form method="POST" action="{% url 'update_bag' item_dict.item.id %}">
-                                        {% csrf_token %}
-                                        <button type="submit" class="update-cart" data-toggle="tooltip" title="Update quantity">
-                                            Update
-                                        </button>
-                                    </form>
-                                </td>
-                                <td class="text-center">
                                     <form method="POST" action="{% url 'remove_from_bag' item_dict.item.id %}">
                                         {% csrf_token %}
                                         <button type="submit" class="remove-from-cart" data-toggle="tooltip" title="Remove item">
@@ -83,6 +75,7 @@
                                         </button>
                                     </form>
                                 </td>
+                              
                             </tr>
                         {% endif %}
                     {% endfor %}

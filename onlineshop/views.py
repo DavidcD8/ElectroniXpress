@@ -14,7 +14,7 @@ from .forms import UpdateQuantityForm
 from decimal import Decimal
 from django.utils import timezone
 from .forms import UserProfileForm
- 
+from django.contrib import messages
 
 # View For 404 Page
 def handler404(request, exception):

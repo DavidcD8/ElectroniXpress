@@ -5,6 +5,7 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/animate.min.css' %}" />
 <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+<script src="{% static 'static/js/countryfield.js' %}"></script>
 
 <h1 class="profile-name">{{ user.username }}</h1>
 
@@ -67,6 +68,5 @@
     {% endfor %}
   </div>
 </div>
- 
-<script type="text/javascript" src="{% static 'static/js/countryfield.js' %}"></script>
-{% endblock %}
+
+ {% endblock %}

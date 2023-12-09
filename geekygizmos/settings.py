@@ -11,25 +11,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
- 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
  
+
 ALLOWED_HOSTS = ['8001-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com',
     '127.0.0.1','8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com',
     '8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
    '8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com', 
    'localhost','8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com','onlineshopfirst-9d7d819c65b1.herokuapp.com']
 
+
 FREE_DELIVERY_THRESHOLD = 100
 STANDARD_DELIVERY_PERCENTAGE = 5
-# Application definition
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,7 +48,10 @@ INSTALLED_APPS = [
     'crispy_bootstrap4', 
 ]
 
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -59,10 +62,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-
 ]
 
+
 ROOT_URLCONF = 'geekygizmos.urls'
+
 
 TEMPLATES = [
     {
@@ -83,11 +87,11 @@ TEMPLATES = [
     },
 ]
 
+
 SITE_ID = 1
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 #ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -96,7 +100,6 @@ ACCOUNT_SIGNUP_URL = '/accounts/signup/'
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
-
 WSGI_APPLICATION = 'geekygizmos.wsgi.application'
 
 
@@ -113,7 +116,6 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
 
 
 # Password validation
@@ -147,11 +149,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-
-
-
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -175,16 +172,13 @@ if 'USE_AWS' in os.environ:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
 
-
 WHITENOISE_USE_FINDERS = True
-
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
 STRIPE_CURRENCY = 'EUR'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
@@ -206,6 +200,7 @@ else:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
  
+
 CSRF_TRUSTED_ORIGINS = ['https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com/admin/login/?next=/admin/',
     'http://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com',
     'https://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com',

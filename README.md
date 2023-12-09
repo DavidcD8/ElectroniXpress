@@ -195,4 +195,8 @@ The application includes security measures such as CSRF protection and password 
 ## Code Validator Results
 
 - The code is validated and does not show any errors on 
+    HTML validation
   * https://validator.w3.org/nu/#textarea
+
+  * CSS validation
+    https://jigsaw.w3.org/css-validator/#validate_by_input

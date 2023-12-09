@@ -12,6 +12,7 @@ from django.views.generic import RedirectView
 
 handler404 = 'onlineshop.views.handler404'
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home, name='home'),

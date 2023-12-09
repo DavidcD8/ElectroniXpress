@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import Item
@@ -16,17 +15,15 @@ from django.utils import timezone
 from .forms import UserProfileForm
 from django.contrib import messages
 
+
 # View For 404 Page
 def handler404(request, exception):
     return render(request, '404.html', status=404)
 
 
-
-
 # View for the listings page
 def ListingView(request):
     return render(request, 'product_list.html')
-
 
 
 # View for home page
@@ -35,6 +32,7 @@ def Home(request):
         'welcome_message': 'Welcome to My Django Web App!',
     }
     return render(request, 'home.html', context)
+
 
 @login_required
 def Profile(request):
@@ -81,16 +79,13 @@ def Profile(request):
 
 
 # view for item detail page
-
-
 def item_detail(request, item_id):
     item = get_object_or_404(Item, id=item_id)
 
     return render(request, 'item_detail.html', {'item': item})
 
+
 # view for item list page
-
-
 def item_list_view(request):
     # Filter out sold items and retrieve only available items
     item_list = Item.objects.filter(is_sold=False).order_by('-created_on')
@@ -107,15 +102,13 @@ def item_list_view(request):
 
     return render(request, 'item_list.html', {'page': page})
 
+
 # view for success page
-
-
 def success_view(request):
     return render(request, 'success.html')
 
-    # To edit the item being sold
 
-
+# To edit the item being sold
 @login_required
 def edit_item_view(request, item_id):
     item = get_object_or_404(Item, id=item_id, seller=request.user)

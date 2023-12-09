@@ -194,4 +194,5 @@ The application includes security measures such as CSRF protection and password 
 
 ## Code Validator Results
 
-
+- The code is validated and does not show any errors on 
+  * https://validator.w3.org/nu/#textarea

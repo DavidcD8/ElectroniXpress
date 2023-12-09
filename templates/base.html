@@ -50,19 +50,14 @@
                 <i class="fas fa-upload"></i> Sell Item
               </a>
             </li>
+         
+            <li class="nav-item">
             <form method="GET" action="{% url 'search_results' %}" onsubmit="return validateSearchForm()" style="max-width: 300px; text-align: center;">
               <input id="search-input" class="search" type="search" name="query" placeholder="Search...">
             </form>
-             
-            
-            {% if not user.is_authenticated %}              <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_login' %}">
-                  <i class="fas fa-sign-in-alt"></i> Login
-              </a>
-          </li>
-          {% endif %}
-          </ul>
-          <li class="nav-item">
+           </li>
+
+           <li class="nav-item">
             <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"  href="{% url 'view_bag' %}">
               <i class="fas fa-shopping-cart"></i>
             </a>
@@ -70,6 +65,14 @@
               <!-- the grand total price goes here -->
           </p>
           </li>
+            {% if not user.is_authenticated %}              <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}">
+                  <i class="fas fa-sign-in-alt"></i> Login
+              </a>
+          </li>
+          {% endif %}
+          </ul>
+       
           <ul class="navbar-nav">
             {% if user.is_authenticated %}
             <li class="nav-item">

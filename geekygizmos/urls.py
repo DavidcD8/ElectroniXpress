@@ -8,12 +8,15 @@ from django.conf.urls.static import static
 from allauth.account.views import LogoutView
 from allauth.account.views import LoginView
 from django.views.generic import RedirectView
- 
+from django.contrib.sitemaps.views import sitemap
+from geekygizmos.sitemaps import StaticViewSitemap
+
 
 handler404 = 'onlineshop.views.handler404'
 
-
 urlpatterns = [
+    path("sitemap.xml", sitemap, {"sitemaps": {"static": StaticViewSitemap}}, name="django.contrib.sitemaps.views.sitemap"),
+   
     path('admin/', admin.site.urls),
     path('', views.Home, name='home'),
     path('home.html', views.Home, name='home'),

@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'onlineshop',
     'crispy_forms',
     'whitenoise',
-    'crispy_bootstrap4', 
+    'crispy_bootstrap4',
+    'django.contrib.sitemaps', 
 ]
 
 

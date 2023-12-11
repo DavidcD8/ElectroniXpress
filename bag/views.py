@@ -4,15 +4,12 @@ from django.contrib.auth.decorators import login_required
 from  onlineshop.models import Item
 
 
-# Create your views here.
+ 
 
 def view_bag(request):
     """ A view that renders the bag contents page """
 
     return render(request, 'bag/bag.html')
-
-
-
 
 
 def add_to_bag(request, item_id):
@@ -31,8 +28,6 @@ def add_to_bag(request, item_id):
     print(request.session['bag'])
     return redirect(redirect_url)
     
-
-
 
 @login_required
 def remove_from_bag(request, item_id):

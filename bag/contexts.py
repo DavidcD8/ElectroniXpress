@@ -3,6 +3,7 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404
 from onlineshop.models import Item  # Make sure to import your Item model
 
+
 def bag_contents(request):
     bag_items = []
     total = 0

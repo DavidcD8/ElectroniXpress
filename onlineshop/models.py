@@ -19,12 +19,18 @@ CONDITION_CHOICES = (
 )
 
 
+def upload_to(instance, filename):
+    # Modify the filename to lowercase
+    filename = filename.lower()
+    return f'item_images/{instance.name}/{filename}'
+
+
 class Item(models.Model):
     name = models.CharField(max_length=254)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.TextField()
     sku = models.CharField(max_length=254, null=True, blank=True)
-    image = models.ImageField()
+    image = models.ImageField(upload_to=upload_to)
     seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name="items")
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
     created_on = models.DateTimeField(default=timezone.now)

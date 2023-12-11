@@ -13,13 +13,12 @@
  
 
 <!-- Profile Info -->
-<div class="items-section profile-info-section">
-    <hr>
-    <h2>User Profile Information</h2>
+<div class="profile-info-section">
+  
+    <h2>Profile Information</h2>
    <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="save-button">Save</button>
+     <button type="submit" class="save-button">Save</button>
   </form>
 </div>
 <br>    

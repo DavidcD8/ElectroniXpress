@@ -16,7 +16,6 @@ handler404 = 'onlineshop.views.handler404'
 
 urlpatterns = [
     path("sitemap.xml", sitemap, {"sitemaps": {"static": StaticViewSitemap}}, name="django.contrib.sitemaps.views.sitemap"),
-   
     path('admin/', admin.site.urls),
     path('', views.Home, name='home'),
     path('home.html', views.Home, name='home'),

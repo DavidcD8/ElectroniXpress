@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /checkout/
+Disallow: /bag/
+Disallow: /search/
+Disallow: /item/
+Disallow: /profile/
+Disallow: /add_item/
+Disallow: /edit_item/
+Disallow: /delete_item/
+Disallow: /mark_as_sold/
+Disallow: /update_bag/
+
+Sitemap: https://yourdomain.com/sitemap.xml

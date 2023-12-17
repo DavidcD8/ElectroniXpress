@@ -44,7 +44,7 @@ urlpatterns = [
     path('item/<int:item_id>/', views.item_detail, name='item'),
     path('checkout/', include('checkout.urls')),
     path('accounts/', include('allauth.urls')),
- 
+
 ]
 
 if settings.DEBUG:

@@ -17,13 +17,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
- 
 
-ALLOWED_HOSTS = ['8001-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com',
-    '127.0.0.1','8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com',
-    '8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
-   '8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com', 
-   'localhost','8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com','onlineshopfirst-9d7d819c65b1.herokuapp.com']
+ALLOWED_HOSTS = ['8001-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com', '127.0.0.1', '8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com', '8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com', '8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com', 'localhost', '8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com', 'onlineshopfirst-9d7d819c65b1.herokuapp.com']
 
 
 FREE_DELIVERY_THRESHOLD = 100
@@ -46,7 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'whitenoise',
     'crispy_bootstrap4',
-    'django.contrib.sitemaps', 
+    'django.contrib.sitemaps',
 ]
 
 
@@ -184,7 +179,7 @@ STRIPE_CURRENCY = 'EUR'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
- 
+
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -200,18 +195,9 @@ else:
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
- 
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com/admin/login/?next=/admin/',
-    'http://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com',
-    'https://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com',
-    'http://8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
-    'https://8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com',
-    'https://8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com',
-    'https://8000-davidcd8-electronixpress-d32wv8luco.us2.codeanyapp.com',
-    'https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com',
-    'https://8001-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com'
-]
+
+CSRF_TRUSTED_ORIGINS = ['https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com/admin/login/?next=/admin/', 'http://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com', 'https://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com', 'http://8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com', 'https://8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com', 'https://8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com', 'https://8000-davidcd8-electronixpress-d32wv8luco.us2.codeanyapp.com', 'https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com', 'https://8001-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com']
 
 
 AUTHENTICATION_BACKENDS = {

@@ -11,6 +11,7 @@ from bag.contexts import bag_contents
 from onlineshop.models import UserProfile
 import json
 
+
 @require_POST
 def cache_checkout_data(request):
     try:
@@ -26,7 +27,8 @@ def cache_checkout_data(request):
         messages.error(request, 'Sorry, your payment cannot be \
             processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
-    
+
+
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -115,12 +117,9 @@ def checkout(request):
     return render(request, template, context)
 
 
-
 def checkout_success(request, order_number):
- 
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
-    
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')

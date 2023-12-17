@@ -51,7 +51,7 @@ def Profile(request):
 
     # Check if a UserProfile instance exists for the current user
     profile, created = UserProfile.objects.get_or_create(user=request.user)
-    
+
     # Check if there is checkout data stored in the session
     checkout_data = request.session.get('checkout_data', None)
 
@@ -60,7 +60,6 @@ def Profile(request):
         form = UserProfileForm(request.POST or None, instance=profile, initial=checkout_data)
     else:
         form = UserProfileForm(request.POST or None, instance=profile)
-
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -127,10 +126,8 @@ def edit_item_view(request, item_id):
 @login_required
 def delete_item_view(request, item_id):
     item = get_object_or_404(Item, id=item_id, seller=request.user)
-
     if request.method == 'POST':
-        # Update the item's status to "sold"  
-        item.status = 'deleted'  # Update the status to 'deleted' or another value
+        item.status = 'deleted'
         item.delete()
         messages.success(request, 'Item marked as deleted successfully!')
 
@@ -150,8 +147,6 @@ def mark_as_sold(request, item_id):
         item.is_sold = True
         item.save()
         messages.success(request, 'Item marked as sold successfully!')
-
-    # Update the item's status to "sold"  
     item.status = 'sold'
     item.save()
 
@@ -174,7 +169,7 @@ def view_other_profile(request, username):
     }
 
     return render(request, 'other_profile.html', context)
- 
+
 
 def update_bag(request, item_id):
     if request.method == 'POST':
@@ -252,5 +247,3 @@ def process_checkout_view(request):
         form = CheckoutForm()
 
     return render(request, 'checkout.html', {'form': form})
-
- 

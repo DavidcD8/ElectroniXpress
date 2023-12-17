@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from  onlineshop.models import Item
+from onlineshop.models import Item
 
-
- 
 
 def view_bag(request):
     """ A view that renders the bag contents page """
@@ -27,7 +25,7 @@ def add_to_bag(request, item_id):
     request.session['bag'] = bag
     print(request.session['bag'])
     return redirect(redirect_url)
-    
+
 
 @login_required
 def remove_from_bag(request, item_id):
@@ -41,4 +39,3 @@ def remove_from_bag(request, item_id):
         request.session['bag'] = bag
 
     return redirect('view_bag')
- 

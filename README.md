@@ -251,3 +251,6 @@ ElectgroniXpress prioritizes the security of user data. Measures include:
 
   * CSS validation
     https://jigsaw.w3.org/css-validator/#validate_by_input
+
+  * Python/Django
+    https://pep8ci.herokuapp.com/

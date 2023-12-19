@@ -14,6 +14,20 @@ from decimal import Decimal
 from django.utils import timezone
 from .forms import UserProfileForm
 from django.contrib import messages
+from .forms import SubscriberForm
+
+
+def subscribe(request):
+    if request.method == 'POST':
+        form = SubscriberForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # You can add a success message here if needed
+            return redirect('home')  # Redirect to the home page after successful signup
+    else:
+        form = SubscriberForm()
+
+    return render(request, 'subscribe.html', {'form': form})
 
 
 # View For 404 Page

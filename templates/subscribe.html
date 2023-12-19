@@ -1,0 +1,15 @@
+<!-- subscribe.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/subscribe.css' %}" />
+
+
+<form id="subform" method="post" action="{% url 'subscribe' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Subscribe</button>
+</form>
+
+{% endblock %}

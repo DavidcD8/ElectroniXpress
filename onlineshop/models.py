@@ -19,12 +19,19 @@ CONDITION_CHOICES = (
 )
 
 
+class Subscriber(models.Model):
+    email = models.EmailField(unique=True)
+
+    def __str__(self):
+        return self.email
+
+
 def upload_to(instance, filename):
     # Modify the filename to lowercase
     filename = filename.lower()
     return f'item_images/{instance.name}/{filename}'
 
-
+#The Items model
 class Item(models.Model):
     name = models.CharField(max_length=254)
     price = models.DecimalField(max_digits=6, decimal_places=2)

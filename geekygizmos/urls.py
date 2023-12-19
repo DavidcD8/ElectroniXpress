@@ -10,6 +10,7 @@ from allauth.account.views import LoginView
 from django.views.generic import RedirectView
 from django.contrib.sitemaps.views import sitemap
 from geekygizmos.sitemaps import StaticViewSitemap
+from onlineshop.views import subscribe
 
 
 handler404 = 'onlineshop.views.handler404'
@@ -44,7 +45,7 @@ urlpatterns = [
     path('item/<int:item_id>/', views.item_detail, name='item'),
     path('checkout/', include('checkout.urls')),
     path('accounts/', include('allauth.urls')),
-
+    path('subscribe/', subscribe, name='subscribe'),
 ]
 
 if settings.DEBUG:

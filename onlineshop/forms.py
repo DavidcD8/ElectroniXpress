@@ -1,8 +1,16 @@
 from .models import Item, Location
 from django import forms
 from .models import UserProfile
+from .models import Subscriber
 
 
+class SubscriberForm(forms.ModelForm):
+    class Meta:
+        model = Subscriber
+        fields = ['email']
+
+
+#User Form
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile

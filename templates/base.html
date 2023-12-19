@@ -28,79 +28,85 @@
   <body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        
-        <a class="nav-link" aria-current="page" href="{% url 'home' %}">ElectroniXpress</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto navbar-links">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="{% url 'home' %}">
-                <i class="fas fa-home"></i> Home
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class ="nav-link" href="{% url 'item_list' %}">
-                <i class="fas fa-list"></i> Listings
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add_item' %}">
-                <i class="fas fa-upload"></i> Sell Item
-              </a>
-            </li>
-         
-            <li class="nav-item">
-            <form method="GET" action="{% url 'search_results' %}" onsubmit="return validateSearchForm()" style="max-width: 300px; text-align: center;">
-              <input id="search-input" class="search" type="search" name="query" placeholder="Search...">
-            </form>
-           </li>
-
-           <li class="nav-item">
-            <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"  href="{% url 'view_bag' %}">
-              <i class="fas fa-shopping-cart"></i>
-            </a>
-            <p class="my-0">
-              <!-- the grand total price goes here -->
-          </p>
-          </li>
-            {% if not user.is_authenticated %}              <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_login' %}">
-                  <i class="fas fa-sign-in-alt"></i> Login
-              </a>
-          </li>
-          {% endif %}
-          </ul>
-       
-          <ul class="navbar-nav">
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'profile' %}">
-                {% if request.user.profile.profile_picture %}
-                  <img
-                    src="{{ request.user.profile.profile_picture.url }}"
-                    alt="{{ request.user.username }}'s Profile Photo"
-                    class="profile-photo"
-                  />
-                {% else %}
-                  <i class="fas fa-user"></i>
-                {% endif %}
-              </a>
-            </li>
-         
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </a>
-            </li>
-            {% endif %}
-          </ul>
-        </div>
-      </div>
+        <div class="container-fluid">
+          <a class="nav-link" aria-current="page" href="{% url 'home' %}">ElectroniXpress</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto navbar-links">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url 'home' %}">
+                  <i class="fas fa-home"></i> Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class ="nav-link" href="{% url 'item_list' %}">
+                  <i class="fas fa-list"></i> Listings
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_item' %}">
+                  <i class="fas fa-upload"></i> Sell Item
+                </a>
+              </li>
+           
+              <li class="nav-item">
+                <form method="GET" action="{% url 'search_results' %}" onsubmit="return validateSearchForm()" style="max-width: 300px; text-align: center;">
+                  <input id="search-input" class="search" type="search" name="query" placeholder="Search...">
+                </form>
+              </li>
       
-    </nav>
+              <li class="nav-item">
+                <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"  href="{% url 'view_bag' %}">
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <p class="my-0">
+                  <!-- the grand total price goes here -->
+                </p>
+              </li>
+              
+              {% if not user.is_authenticated %}              
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'account_login' %}">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                  </a>
+                </li>
+              {% endif %}
+              
+              <!-- New List Item for Subscribe Link -->
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'subscribe' %}">Subscribe</a>
+              </li>
+            </ul>
+      
+            <ul class="navbar-nav">
+              {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'profile' %}">
+                    {% if request.user.profile.profile_picture %}
+                      <img
+                        src="{{ request.user.profile.profile_picture.url }}"
+                        alt="{{ request.user.username }}'s Profile Photo"
+                        class="profile-photo"
+                      />
+                    {% else %}
+                      <i class="fas fa-user"></i>
+                    {% endif %}
+                  </a>
+                </li>
+             
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                  </a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
 
     <!-- Content Block - content from child templates will be inserted here -->
     {% block content %} {% endblock %}

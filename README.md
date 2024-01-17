@@ -28,6 +28,13 @@ Our UX design process involves:
 3. **Mockups and Prototypes:** Designing visual mockups and interactive prototypes for user testing.
 4. **User Feedback:** Iterating based on user feedback to optimize the user experience.
 
+![Alt Text](media/Wireframe/1.png)
+![Alt Text](media/Wireframe/2.png)
+![Alt Text](media/Wireframe/3.png)
+![Alt Text](media/Wireframe/4.png)
+![Alt Text](media/Wireframe/5.png)
+
+
 ### Design Elements
 #### Color Palette
 We chose a modern color palette with a blend of tech-inspired Orange and whites, creating a visually appealing and cohesive design.

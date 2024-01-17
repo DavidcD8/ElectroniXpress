@@ -1,18 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'css/404.css' %}" />
+{% block content %}
+  <link rel="stylesheet" href="{% static 'css/add_item.css' %}" />
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found</title>
-</head>
-<body>
-    <h1>404 - Page Not Found</h1>
-    <p>The requested page could not be found.</p>
-</body>
-</html>
+  <h1>404 - Page Not Found</h1>
+  <p>The requested page could not be found.</p>
+{% endblock %}

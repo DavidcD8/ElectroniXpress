@@ -5,7 +5,13 @@ from django.db.models.signals import post_save
 from django.utils import timezone
 from django_countries.fields import CountryField
 
+class Location(models.Model):
+    name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
+        
 CONDITION_CHOICES = (
     ("new", "New"),
     ("used", "Used"),
@@ -26,22 +32,19 @@ def upload_to(instance, filename):
 
 
 # The Items model
-
-
 class Item(models.Model):
     name = models.CharField(max_length=254)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.TextField()
     sku = models.CharField(max_length=254, null=True, blank=True)
     image = models.ImageField(upload_to=upload_to)
-    seller = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="items")
+    seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name="items")
     created_on = models.DateTimeField(default=timezone.now)
-    is_sold = models.BooleanField(default=False)
+    is_available = models.BooleanField(default=True) #retrieves the items and displays it in section items for sale
+    is_sold = models.BooleanField(default=False)# Mark as sold button will check the state of this
     quantity = models.PositiveIntegerField(default=1)
-    condition = models.CharField(
-        max_length=50, choices=CONDITION_CHOICES, default="new"
-    )
+    condition = models.CharField(max_length=50, choices=CONDITION_CHOICES, default='new')
+    default_country = CountryField(blank_label="Country", null=True, blank=True)
 
     def mark_as_sold(self):
         self.is_available = False
@@ -50,6 +53,8 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
+ 
+
 
 
 class UserProfile(models.Model):
@@ -72,7 +77,6 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
-
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

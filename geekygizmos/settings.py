@@ -8,9 +8,8 @@ if os.path.isfile("env.py"):
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+ 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
@@ -26,10 +25,17 @@ ALLOWED_HOSTS = [
     "8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com",
     "localhost",
     "8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com",
+    "onlineshopfirst-9d7d819c65b1.herokuapp.com",  
+     'https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
+     '8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
+     "127.0.0.1",
+    "localhost",
+    "8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com",
     "onlineshopfirst-9d7d819c65b1.herokuapp.com",
 ]
 
-
+CSRF_USE_SESSIONS = True
+CSRF_COOKIE_SECURE = True
 FREE_DELIVERY_THRESHOLD = 100
 STANDARD_DELIVERY_PERCENTAGE = 5
 
@@ -212,6 +218,11 @@ CSRF_TRUSTED_ORIGINS = [
     "https://8000-davidcd8-electronixpress-d32wv8luco.us2.codeanyapp.com",
     "https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com",
     "https://8001-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com",
+    'http://127.0.0.1:8000/',
+    'https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
+    'https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
+
+    
 ]
 
 

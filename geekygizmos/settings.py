@@ -31,8 +31,8 @@ ALLOWED_HOSTS = [
      "127.0.0.1",
     "localhost",
     "8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com",
-    "onlineshopfirst-9d7d819c65b1.herokuapp.com",
-]
+    "onlineshopfirst-9d7d819c65b1.herokuapp.com", '8000-davidcd8-electronixpress-t8cw2ni2o3.us2.codeanyapp.com'
+    ,]
 
 CSRF_USE_SESSIONS = True
 CSRF_COOKIE_SECURE = True
@@ -209,21 +209,18 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CSRF_TRUSTED_ORIGINS = [
     "https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com/admin/login/?next=/admin/",
-    "http://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com",
-    "https://8000-davidcd8-geekygizmos-gp9dz9ugo2.us2.codeanyapp.com",
-    "http://8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com",
-    "https://8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com",
-    "https://8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com",
-    "https://8000-davidcd8-electronixpress-d32wv8luco.us2.codeanyapp.com",
-    "https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com",
-    "https://8001-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com",
+    
     'http://127.0.0.1:8000/',
     'https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
     'https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
-
+    'https://8000-davidcd8-electronixpress-t8cw2ni2o3.us2.codeanyapp.com',
     
+    "https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com",
+    "http://127.0.0.1:8000/",
+    "https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com",
+    "https://8000-davidcd8-electronixpress-t8cw2ni2o3.us2.codeanyapp.com",
+    # Add other valid origins as needed
 ]
-
 
 AUTHENTICATION_BACKENDS = {
     # to login username in django admin, regardless of allauth

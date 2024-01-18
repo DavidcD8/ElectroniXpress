@@ -9,6 +9,8 @@ if os.path.isfile("env.py"):
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+CSRF_USE_SESSIONS = True
+CSRF_COOKIE_SECURE = True
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
@@ -34,8 +36,6 @@ ALLOWED_HOSTS = [
     "onlineshopfirst-9d7d819c65b1.herokuapp.com", '8000-davidcd8-electronixpress-t8cw2ni2o3.us2.codeanyapp.com'
     ,]
 
-CSRF_USE_SESSIONS = True
-CSRF_COOKIE_SECURE = True
 FREE_DELIVERY_THRESHOLD = 100
 STANDARD_DELIVERY_PERCENTAGE = 5
 

@@ -5,11 +5,7 @@ from django.db.models.signals import post_save
 from django.utils import timezone
 from django_countries.fields import CountryField
 
-class Location(models.Model):
-    name = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.name
 
         
 CONDITION_CHOICES = (

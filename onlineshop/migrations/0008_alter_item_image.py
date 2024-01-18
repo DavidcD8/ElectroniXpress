@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('onlineshop', '0007_remove_item_is_sold_item_is_available'),
+        ("onlineshop", "0007_remove_item_is_sold_item_is_available"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='item',
-            name='image',
-            field=models.ImageField(upload_to='item_images/'),
+            model_name="item",
+            name="image",
+            field=models.ImageField(upload_to="item_images/"),
         ),
     ]

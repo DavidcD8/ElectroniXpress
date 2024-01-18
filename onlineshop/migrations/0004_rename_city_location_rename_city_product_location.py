@@ -4,19 +4,18 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('onlineshop', '0003_rename_profile_userprofile'),
+        ("onlineshop", "0003_rename_profile_userprofile"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='City',
-            new_name='Location',
+            old_name="City",
+            new_name="Location",
         ),
         migrations.RenameField(
-            model_name='product',
-            old_name='city',
-            new_name='location',
+            model_name="product",
+            old_name="city",
+            new_name="location",
         ),
     ]

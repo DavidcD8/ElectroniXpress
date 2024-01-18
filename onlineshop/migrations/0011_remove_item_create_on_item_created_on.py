@@ -5,19 +5,18 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('onlineshop', '0010_message'),
+        ("onlineshop", "0010_message"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='item',
-            name='create_on',
+            model_name="item",
+            name="create_on",
         ),
         migrations.AddField(
-            model_name='item',
-            name='created_on',
+            model_name="item",
+            name="created_on",
             field=models.DateTimeField(default=django.utils.timezone.now),
         ),
     ]

@@ -5,45 +5,46 @@ import django_countries.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('onlineshop', '0014_item_condition'),
+        ("onlineshop", "0014_item_condition"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='userprofile',
-            name='default_country',
-            field=django_countries.fields.CountryField(blank=True, max_length=2, null=True),
+            model_name="userprofile",
+            name="default_country",
+            field=django_countries.fields.CountryField(
+                blank=True, max_length=2, null=True
+            ),
         ),
         migrations.AddField(
-            model_name='userprofile',
-            name='default_county',
+            model_name="userprofile",
+            name="default_county",
             field=models.CharField(blank=True, max_length=80, null=True),
         ),
         migrations.AddField(
-            model_name='userprofile',
-            name='default_phone_number',
+            model_name="userprofile",
+            name="default_phone_number",
             field=models.CharField(blank=True, max_length=20, null=True),
         ),
         migrations.AddField(
-            model_name='userprofile',
-            name='default_postcode',
+            model_name="userprofile",
+            name="default_postcode",
             field=models.CharField(blank=True, max_length=20, null=True),
         ),
         migrations.AddField(
-            model_name='userprofile',
-            name='default_street_address1',
+            model_name="userprofile",
+            name="default_street_address1",
             field=models.CharField(blank=True, max_length=80, null=True),
         ),
         migrations.AddField(
-            model_name='userprofile',
-            name='default_street_address2',
+            model_name="userprofile",
+            name="default_street_address2",
             field=models.CharField(blank=True, max_length=80, null=True),
         ),
         migrations.AddField(
-            model_name='userprofile',
-            name='default_town_or_city',
+            model_name="userprofile",
+            name="default_town_or_city",
             field=models.CharField(blank=True, max_length=40, null=True),
         ),
     ]

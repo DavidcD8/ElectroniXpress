@@ -6,28 +6,45 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('onlineshop', '0004_rename_city_location_rename_city_product_location'),
+        ("onlineshop", "0004_rename_city_location_rename_city_product_location"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='Product',
-            new_name='Ad',
+            old_name="Product",
+            new_name="Ad",
         ),
         migrations.CreateModel(
-            name='CreateAd',
+            name="CreateAd",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=200)),
-                ('description', models.TextField()),
-                ('price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('category', models.CharField(max_length=100)),
-                ('contact_info', models.CharField(max_length=200)),
-                ('image', models.ImageField(blank=True, null=True, upload_to='ads/images/')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=200)),
+                ("description", models.TextField()),
+                ("price", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("category", models.CharField(max_length=100)),
+                ("contact_info", models.CharField(max_length=200)),
+                (
+                    "image",
+                    models.ImageField(blank=True, null=True,
+                                      upload_to="ads/images/"),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

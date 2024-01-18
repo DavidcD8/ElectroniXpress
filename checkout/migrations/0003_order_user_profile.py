@@ -5,16 +5,21 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('onlineshop', '0015_userprofile_default_country_and_more'),
-        ('checkout', '0002_order_original_bag_order_stripe_pid_and_more'),
+        ("onlineshop", "0015_userprofile_default_country_and_more"),
+        ("checkout", "0002_order_original_bag_order_stripe_pid_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='order',
-            name='user_profile',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='orders', to='onlineshop.userprofile'),
+            model_name="order",
+            name="user_profile",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="orders",
+                to="onlineshop.userprofile",
+            ),
         ),
     ]

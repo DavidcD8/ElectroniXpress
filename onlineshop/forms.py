@@ -1,4 +1,4 @@
-from .models import Item, Location
+from .models import Item
 from django import forms
 from .models import UserProfile
 from .models import Subscriber
@@ -7,35 +7,37 @@ from .models import Subscriber
 class SubscriberForm(forms.ModelForm):
     class Meta:
         model = Subscriber
-        fields = ['email']
+        fields = ["email"]
 
 
-#User Form
+# User Form
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = '__all__'  # Include all fields except 'user'
-        exclude = ('user', 'profile_picture')  # Exclude 'user' field
+        fields = "__all__"  # Include all fields except 'user'
+        exclude = ("user", "profile_picture")  # Exclude 'user' field
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         placeholders = {
-            'default_phone_number': 'Phone Number',
-            'default_postcode': 'Postal Code',
-            'default_town_or_city': 'Town or City',
-            'default_street_address1': 'Street Address 1',
-            'default_street_address2': 'Street Address 2',
-            'default_county': 'County, State, or Locality',
+            "default_phone_number": "Phone Number",
+            "default_postcode": "Postal Code",
+            "default_town_or_city": "Town or City",
+            "default_street_address1": "Street Address 1",
+            "default_street_address2": "Street Address 2",
+            "default_county": "County, State, or Locality",
         }
 
         for field in self.fields:
-            if field != 'default_country':
+            if field != "default_country":
                 if self.fields[field].required:
-                    placeholder = f'{placeholders[field]} *'
+                    placeholder = f"{placeholders[field]} *"
                 else:
                     placeholder = placeholders[field]
-                self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
+                self.fields[field].widget.attrs["placeholder"] = placeholder
+            self.fields[field].widget.attrs[
+                "class"
+            ] = "border-black rounded-0 profile-form-input"
             self.fields[field].label = False
 
 
@@ -50,19 +52,21 @@ class ItemForm(forms.ModelForm):
 
     class Meta:
         model = Item
-        fields = ['name', 'description', 'price', 'image', 'quantity', 'is_available', 'condition']
+        fields = ["name", "description", "price",
+                  "image", "quantity", "condition"]
 
 
 class EditItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ['name', 'description', 'price', 'image', 'quantity', 'is_available', 'condition']
+        fields = ["name", "description", "price",
+                  "image", "quantity", "condition"]
 
 
 class MarkItemAsSoldForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ['is_sold']
+        fields = ["is_sold"]
 
 
 class AddToCartForm(forms.Form):

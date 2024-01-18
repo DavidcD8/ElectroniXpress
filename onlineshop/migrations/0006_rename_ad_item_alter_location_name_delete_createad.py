@@ -5,23 +5,22 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('onlineshop', '0005_rename_product_ad_createad'),
+        ("onlineshop", "0005_rename_product_ad_createad"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='Ad',
-            new_name='Item',
+            old_name="Ad",
+            new_name="Item",
         ),
         migrations.AlterField(
-            model_name='location',
-            name='name',
+            model_name="location",
+            name="name",
             field=models.CharField(max_length=255),
         ),
         migrations.DeleteModel(
-            name='CreateAd',
+            name="CreateAd",
         ),
     ]

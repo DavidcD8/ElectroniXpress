@@ -10,23 +10,19 @@ class ProfileInline(admin.StackedInline):
     can_delete = False
 
 
-admin.site.unregister(User)
-admin.site.register(UserProfile)
-
-
 class ItemAdmin(admin.ModelAdmin):
     list_display = (
-        'name',
-        'price',
-        'seller',
-        'location',
-        'is_available',
-        'is_sold',
+        "name",
+        "price",
+        "seller",
+        "is_sold",
     )
 
-    list_filter = ('is_available', 'is_sold', 'seller', 'location')
-    search_fields = ('name', 'seller__username', 'location__name')
-    ordering = ('name',)
+    list_filter = ("is_sold", "seller")
+    search_fields = ("name", "seller__username")
+    ordering = ("name",)
 
 
 admin.site.register(Item, ItemAdmin)
+admin.site.unregister(User)
+admin.site.register(UserProfile)

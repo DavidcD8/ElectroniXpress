@@ -1,8 +1,14 @@
+from django_countries.fields import CountryField
+from django_countries.widgets import CountrySelectWidget
 from django import forms
 from .models import Order
 
-
 class OrderForm(forms.ModelForm):
+    country = forms.ChoiceField(
+        choices=CountryField().choices + [('', 'Select Country')],
+        widget=CountrySelectWidget(attrs={'class': 'custom-select d-block w-100'})
+    )
+
     class Meta:
         model = Order
         fields = (
@@ -13,15 +19,11 @@ class OrderForm(forms.ModelForm):
             "street_address2",
             "town_or_city",
             "postcode",
-            "country",
+            "country",  # Include the country field here
             "county",
         )
 
     def __init__(self, *args, **kwargs):
-        """
-        Add placeholders and classes, remove auto-generated
-        labels and set autofocus on first field
-        """
         super().__init__(*args, **kwargs)
         placeholders = {
             "full_name": "Full Name",
@@ -34,13 +36,15 @@ class OrderForm(forms.ModelForm):
             "county": "County",
         }
 
-        self.fields["full_name"].widget.attrs["autofocus"] = True
-        for field in self.fields:
-            if field != "country":
-                if self.fields[field].required:
-                    placeholder = f"{placeholders[field]} *"
+        for name, field in self.fields.items():
+            if name != "country":
+                if field.required:
+                    placeholder = f"{placeholders[name]} *"
                 else:
-                    placeholder = placeholders[field]
-            self.fields[field].widget.attrs["placeholder"] = placeholder
-            self.fields[field].widget.attrs["class"] = "stripe-style-input"
-            self.fields[field].label = False
+                    placeholder = placeholders[name]
+                field.widget.attrs["placeholder"] = placeholder
+                field.widget.attrs["class"] = "stripe-style-input"
+                field.label = False
+
+        # Remove label for the country field
+        self.fields['country'].label = False

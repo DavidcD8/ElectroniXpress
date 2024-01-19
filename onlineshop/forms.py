@@ -2,16 +2,17 @@ from .models import Item
 from django import forms
 from .models import UserProfile
 from .models import Subscriber
-
-
+from django_countries.fields import CountryField
+from django.db import models
 class SubscriberForm(forms.ModelForm):
     class Meta:
         model = Subscriber
         fields = ["email"]
 
 
-# User Form
 class UserProfileForm(forms.ModelForm):
+    default_country = forms.ChoiceField(choices=CountryField().choices + [('', 'Select Country')])
+
     class Meta:
         model = UserProfile
         fields = "__all__"  # Include all fields except 'user'
@@ -28,18 +29,19 @@ class UserProfileForm(forms.ModelForm):
             "default_county": "County, State, or Locality",
         }
 
-        for field in self.fields:
-            if field != "default_country":
-                if self.fields[field].required:
-                    placeholder = f"{placeholders[field]} *"
+        for name, field in self.fields.items():
+            if name != "default_country":
+                if field.required:
+                    placeholder = f"{placeholders[name]} *"
                 else:
-                    placeholder = placeholders[field]
-                self.fields[field].widget.attrs["placeholder"] = placeholder
-            self.fields[field].widget.attrs[
-                "class"
-            ] = "border-black rounded-0 profile-form-input"
-            self.fields[field].label = False
+                    placeholder = placeholders[name]
+                field.widget.attrs["placeholder"] = placeholder
+                field.widget.attrs["class"] = "border-black rounded-0 profile-form-input"
+                field.label = False
 
+        # Remove label for the default_country field
+        self.fields['default_country'].label = False
+ 
 
 CONDITION_CHOICES = (
     ("new", "New"),

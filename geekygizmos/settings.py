@@ -17,7 +17,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "8001-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com",

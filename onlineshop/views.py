@@ -92,6 +92,7 @@ def Profile(request):
     return render(request, "profile.html", context)
 
 
+
 # view for item detail page
 def item_detail(request, item_id):
     item = get_object_or_404(Item, id=item_id)

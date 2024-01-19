@@ -27,14 +27,14 @@ ALLOWED_HOSTS = [
     "8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com",
     "localhost",
     "8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com",
-    "onlineshopfirst-9d7d819c65b1.herokuapp.com",  
-     'https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
-     '8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
-     "127.0.0.1",
+    "onlineshopfirst-9d7d819c65b1.herokuapp.com",
+    'https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
+    '8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
+    "127.0.0.1",
     "localhost",
     "8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com",
-    "onlineshopfirst-9d7d819c65b1.herokuapp.com", '8000-davidcd8-electronixpress-t8cw2ni2o3.us2.codeanyapp.com'
-    ,]
+    "onlineshopfirst-9d7d819c65b1.herokuapp.com",
+    '8000-davidcd8-electronixpress-t8cw2ni2o3.us2.codeanyapp.com']
 
 FREE_DELIVERY_THRESHOLD = 100
 STANDARD_DELIVERY_PERCENTAGE = 5
@@ -129,18 +129,13 @@ else:
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    {"NAME": f"django.contrib.auth.password_validation.{validator}"}
+    for validator in [
+        "UserAttributeSimilarityValidator",
+        "MinimumLengthValidator",
+        "CommonPasswordValidator",
+        "NumericPasswordValidator",
+    ]
 ]
 
 
@@ -208,13 +203,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com/admin/login/?next=/admin/",
-    
     'http://127.0.0.1:8000/',
     'https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
     'https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
     'https://8000-davidcd8-electronixpress-t8cw2ni2o3.us2.codeanyapp.com',
-    
+
     "https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com",
     "http://127.0.0.1:8000/",
     "https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com",

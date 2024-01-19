@@ -4,6 +4,8 @@ from .models import UserProfile
 from .models import Subscriber
 from django_countries.fields import CountryField
 from django.db import models
+
+
 class SubscriberForm(forms.ModelForm):
     class Meta:
         model = Subscriber
@@ -11,7 +13,8 @@ class SubscriberForm(forms.ModelForm):
 
 
 class UserProfileForm(forms.ModelForm):
-    default_country = forms.ChoiceField(choices=CountryField().choices + [('', 'Select Country')])
+    default_country = forms.ChoiceField(
+        choices=CountryField().choices + [('', 'Select Country')])
 
     class Meta:
         model = UserProfile
@@ -36,12 +39,16 @@ class UserProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[name]
                 field.widget.attrs["placeholder"] = placeholder
-                field.widget.attrs["class"] = "border-black rounded-0 profile-form-input"
+                field.widget.attrs["class"] = (
+                    "border-black "
+                    "rounded-0 "
+                    "profile-form-input"
+                                )
                 field.label = False
 
         # Remove label for the default_country field
         self.fields['default_country'].label = False
- 
+
 
 CONDITION_CHOICES = (
     ("new", "New"),

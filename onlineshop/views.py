@@ -55,7 +55,7 @@ def Profile(request):
         "welcome_message": "Welcome to My Django Web App!",
     }
 
-    # Retrieve items associated with the logged-in user that are available for sale
+    # Retrieve items associated with user that are available for sale
     seller_items = Item.objects.filter(seller=request.user, is_sold=False)
 
     # Retrieve items associated with the logged-in user that are marked as sold
@@ -72,7 +72,8 @@ def Profile(request):
 
     # If checkout data is available, update the UserProfileForm instance
     if checkout_data:
-        form = UserProfileForm(request.POST or None, instance=profile, initial=checkout_data)
+        form = UserProfileForm(request.POST or None,
+                               instance=profile, initial=checkout_data)
     else:
         form = UserProfileForm(request.POST or None, instance=profile)
 
@@ -90,7 +91,6 @@ def Profile(request):
     context["orders"] = profile.orders.all()
 
     return render(request, "profile.html", context)
-
 
 
 # view for item detail page

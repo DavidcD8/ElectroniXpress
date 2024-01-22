@@ -88,6 +88,10 @@ At ElectgroniXpress, we believe in fostering a community where technology enthus
 Join ElectgroniXpress today and be part of a thriving community passionate about technology!
 
 
+## Mockup: Facebook Page
+![Facebook Page](media/mockup_image/facebook-ad-mockup.png)
+
+
 ## Features
 
 -   User registration and authentication

@@ -114,3 +114,14 @@ body{
 .delete-button {
   background-color: #DC3545;
 }
+
+
+#id_default_country{
+    word-wrap: normal;
+    width: 229px !important;
+}
+
+.select{
+    word-wrap: normal;
+    width: 229px !important;
+}

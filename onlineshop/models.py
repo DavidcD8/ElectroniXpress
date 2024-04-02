@@ -30,7 +30,6 @@ class Item(models.Model):
     name = models.CharField(max_length=254)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.TextField()
-    sku = models.CharField(max_length=254, null=True, blank=True)
     image = models.ImageField(upload_to=upload_to)
     seller = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="items")

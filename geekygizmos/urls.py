@@ -10,6 +10,7 @@ from django.views.generic import RedirectView
 from django.contrib.sitemaps.views import sitemap
 from geekygizmos.sitemaps import StaticViewSitemap
 from onlineshop.views import subscribe
+from faq.views import faq
 
 
 handler404 = "onlineshop.views.handler404"
@@ -53,6 +54,7 @@ urlpatterns = [
     path("checkout/", include("checkout.urls")),
     path("accounts/", include("allauth.urls")),
     path("subscribe/", subscribe, name="subscribe"),
+    path("faq/", faq, name="faq"),
 ]
 
 if settings.DEBUG:

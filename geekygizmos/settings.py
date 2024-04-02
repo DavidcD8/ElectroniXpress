@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "whitenoise",
     "crispy_bootstrap4",
     "django.contrib.sitemaps",
+    "faq",
 ]
 
 

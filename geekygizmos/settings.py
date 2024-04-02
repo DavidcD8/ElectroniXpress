@@ -17,24 +17,15 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get("DEBUG", False)
 
-ALLOWED_HOSTS = [
-    "8001-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com",
-    "127.0.0.1",
-    "8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com",
-    "8000-davidcd8-electronixpress-ay7zuhy2l0.us2.codeanyapp.com",
-    "8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com",
-    "localhost",
-    "8000-davidcd8-electronixpress-j30mzjfann.us2.codeanyapp.com",
-    "onlineshopfirst-9d7d819c65b1.herokuapp.com",
-    'https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
-    '8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
-    "127.0.0.1",
-    "localhost",
-    "8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com",
-    "onlineshopfirst-9d7d819c65b1.herokuapp.com",
-    '8000-davidcd8-electronixpress-t8cw2ni2o3.us2.codeanyapp.com']
+ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = []
+
+host = os.environ.get("HOST")
+if host:
+    ALLOWED_HOSTS.append(host)
+    CSRF_TRUSTED_ORIGINS.append(f"https://{host}")
 
 FREE_DELIVERY_THRESHOLD = 100
 STANDARD_DELIVERY_PERCENTAGE = 5
@@ -202,18 +193,7 @@ else:
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-CSRF_TRUSTED_ORIGINS = [
-    'http://127.0.0.1:8000/',
-    'https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
-    'https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com',
-    'https://8000-davidcd8-electronixpress-t8cw2ni2o3.us2.codeanyapp.com',
 
-    "https://8000-davidcd8-electronixpress-twqcrugx1c.us2.codeanyapp.com",
-    "http://127.0.0.1:8000/",
-    "https://8000-davidcd8-electronixpress-2sbslal7d5.us2.codeanyapp.com",
-    "https://8000-davidcd8-electronixpress-t8cw2ni2o3.us2.codeanyapp.com",
-    # Add other valid origins as needed
-]
 
 AUTHENTICATION_BACKENDS = {
     # to login username in django admin, regardless of allauth

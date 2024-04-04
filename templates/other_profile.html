@@ -29,7 +29,7 @@
             <ul>
                 {% for item in user_items %}
                     <li>
-                        <a href="{% url 'item_detail' item.id %}">{{ item.name }}</a> - Price: ${{ item.price }}
+                        <a href="{% url 'item_detail' item.id %}">{{ item.name }}</a> - Price: €{{ item.price }}
                     </li>
                 {% empty %}
                     <li>No items currently for sale.</li>

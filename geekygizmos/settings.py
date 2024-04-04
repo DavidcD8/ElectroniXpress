@@ -1,5 +1,6 @@
-from pathlib import Path
 import os
+from pathlib import Path
+
 import dj_database_url
 
 if os.path.isfile("env.py"):
@@ -91,7 +92,7 @@ TEMPLATES = [
 
 SITE_ID = 1
 
-ESMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+ESMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
@@ -106,8 +107,10 @@ WSGI_APPLICATION = "geekygizmos.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 if "DATABASE_URL" in os.environ:
-    DATABASES = {"default": dj_database_url.parse(
-        os.environ.get("DATABASE_URL"))}
+    DATABASES = {
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
+
 else:
     DATABASES = {
         "default": {
@@ -192,8 +195,6 @@ else:
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
 
 
 AUTHENTICATION_BACKENDS = {

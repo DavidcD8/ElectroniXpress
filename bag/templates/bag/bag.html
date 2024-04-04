@@ -2,119 +2,112 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
-    <link rel="stylesheet" href="{% static 'css/bag.css' %}" />
+<link rel="stylesheet" href="{% static 'css/bag.css' %}" />
 
-    <div class="container padding-bottom-3x mb-1">
-        <!-- Shopping Cart-->
-        <div class="table-responsive shopping-cart">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Product Name</th>
-                        <th class="text-center">Quantity</th>
-                        <th class="text-center">Price per Item</th>
-                        <th class="text-center">Subtotal</th>
-                         <th class="text-center">Remove</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item_dict in bag_items %}
-                        {% if item_dict.quantity > 0 %}
-                            <tr>
-                                <td>
-                                    <div class="product-item">
-                                        <a class="product-thumb" href="{% url 'item_detail' item_dict.item.id %}">
-                                            <img src="{{ item_dict.item.image.url }}" alt="{{ item_dict.item.name }}">
-                                        </a>
-                                        <div class="product-info">
-                                            <h4 class="product-title">
-                                                <a href="{% url 'item_detail' item_dict.item.id %}">
-                                                    {{ item_dict.item.name }}
-                                                </a>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="count-input">
-                                        <form method="POST" action="{% url 'update_bag' item_dict.item.id %}">
-                                            {% csrf_token %}
-                                            <div class="input-group">
-                                                <input
-                                                    type="number"
-                                                    name="quantity"
-                                                    value="{{ item_dict.quantity }}"
-                                                    min="1"
-                                                    max="99"
-                                                    class="form-control qty_input"
-                                                    id="id_qty_{{ item_dict.item.id }}"
-                                                    data-item_id="{{ item_dict.item.id }}"
-                                                >
-                                                <button type="submit" class="btn btn-outline-primary">
-                                                    Update
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </td>
-                                <td class="text-center text-lg text-medium">{{ item_dict.item.price | floatformat:2 }}</td>
-                                <td class="text-center text-lg text-medium">{{ item_dict.total_price | floatformat:2 }}</td>
-                                <td class="text-center">
-                                    <form method="POST" action="{% url 'remove_from_bag' item_dict.item.id %}">
-                                        {% csrf_token %}
-                                        <button type="submit" class="remove-from-cart" data-toggle="tooltip" title="Remove item">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                              
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                    <tr>
-                        <td colspan="3" class="font-weight-bold text-end">Grand Total (€):</td>
-                        <td class="font-weight-bold text-center" colspan="2">{{ grand_total | floatformat:2 }}</td>
+<div class="container padding-bottom-3x mb-1">
+    <!-- Shopping Cart-->
+    <div class="table-responsive shopping-cart">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th class="text-center">Quantity</th>
+                    <th class="text-center">Price per Item</th>
+                    <th class="text-center">Subtotal</th>
+                    <th class="text-center">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item_dict in bag_items %}
+                {% if item_dict.quantity > 0 %}
+                <tr>
+                    <td>
+                        <div class="product-item">
+                            <a class="product-thumb" href="{% url 'item_detail' item_dict.item.id %}">
+                                <img src="{{ item_dict.item.image.url }}" alt="{{ item_dict.item.name }}">
+                            </a>
+                            <div class="product-info">
+                                <h4 class="product-title">
+                                    <a href="{% url 'item_detail' item_dict.item.id %}">
+                                        {{ item_dict.item.name }}
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <div class="count-input">
+                            <form method="POST" action="{% url 'update_bag' item_dict.item.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <input type="number" name="quantity" value="{{ item_dict.quantity }}" min="1"
+                                        max="99" class="form-control qty_input" id="id_qty_{{ item_dict.item.id }}"
+                                        data-item_id="{{ item_dict.item.id }}">
+                                    <button type="submit" class="btn btn-outline-primary">
+                                        Update
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                    <td class="text-center text-lg text-medium">{{ item_dict.item.price | floatformat:2 }}</td>
+                    <td class="text-center text-lg text-medium">{{ item_dict.total_price | floatformat:2 }}</td>
+                    <td class="text-center">
+                        <form method="POST" action="{% url 'remove_from_bag' item_dict.item.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="remove-from-cart" data-toggle="tooltip" title="Remove item">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
 
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                <tr>
+                    <td colspan="3" class="font-weight-bold text-end">Grand Total (€):</td>
+                    <td class="font-weight-bold text-center" colspan="2">{{ grand_total | floatformat:2 }}</td>
 
-        <div class="shopping-cart-footer">
-            <div class="column">
-                <a class="btn btn-outline-secondary" href="{% url 'item_list' %}">
-                    <i class="icon-arrow-left"></i>&nbsp;Back to Shopping
-                </a>
-            </div>
-            <div class="column">
-                <a class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
-            </div>
-        </div>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <script>
-        function increaseQuantity(btn) {
-            var select = btn.parentNode.querySelector('select');
-            var currentValue = parseInt(select.value);
-            if (currentValue < 5) {
-                select.value = currentValue + 1;
-            }
-        }
+    <div class="shopping-cart-footer">
+        <div class="column">
+            <a class="btn btn-outline-secondary" href="{% url 'item_list' %}">
+                <i class="icon-arrow-left"></i>&nbsp;Back to Shopping
+            </a>
+        </div>
+        <div class="column">
+            <a class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+        </div>
+    </div>
+</div>
 
-        function decreaseQuantity(btn) {
-            var select = btn.parentNode.querySelector('select');
-            var currentValue = parseInt(select.value);
-            if (currentValue > 1) {
-                select.value = currentValue - 1;
-            }
+<script>
+    function increaseQuantity(btn) {
+        var select = btn.parentNode.querySelector('select');
+        var currentValue = parseInt(select.value);
+        if (currentValue < 5) {
+            select.value = currentValue + 1;
         }
-    </script>
+    }
+
+    function decreaseQuantity(btn) {
+        var select = btn.parentNode.querySelector('select');
+        var currentValue = parseInt(select.value);
+        if (currentValue > 1) {
+            select.value = currentValue - 1;
+        }
+    }
+</script>
 {% endblock %}

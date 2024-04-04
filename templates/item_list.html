@@ -17,7 +17,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ item.name }}</h5>
               <br>
-              <p class="card-text">Price: ${{ item.price }}</p>
+              <p class="card-text">Price: €{{ item.price }}</p>
               <p class="card-text">Seller: <a href="{% url 'profile' item.seller.username %}">{{ item.seller }}</a></p>
               <p class="card-text">Condition: {{ item.condition }}</p>
               <p class="card-text">Date Created: {{ item.created_on }}</p>

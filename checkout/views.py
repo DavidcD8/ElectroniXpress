@@ -166,3 +166,4 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
+    

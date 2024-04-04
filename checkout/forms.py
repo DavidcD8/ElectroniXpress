@@ -1,12 +1,15 @@
+from django import forms
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
-from django import forms
+
 from .models import Order
+
 
 class OrderForm(forms.ModelForm):
     country = forms.ChoiceField(
         choices=CountryField().choices + [('', 'Select Country')],
-        widget=CountrySelectWidget(attrs={'class': 'custom-select d-block w-100'})
+        widget=CountrySelectWidget(
+            attrs={'class': 'custom-select d-block w-100'})
     )
 
     class Meta:
@@ -47,4 +50,4 @@ class OrderForm(forms.ModelForm):
                 field.label = False
 
         # Remove label for the country field
-        self.fields['country'].label = False
+        self.fields["country"].label = False

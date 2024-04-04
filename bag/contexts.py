@@ -1,6 +1,8 @@
 from decimal import Decimal
+
 from django.conf import settings
 from django.shortcuts import get_object_or_404
+
 from onlineshop.models import Item  # Make sure to import your Item model
 
 
@@ -28,8 +30,8 @@ def bag_contents(request):
 
     # Calculate delivery cost
     if subtotal < settings.FREE_DELIVERY_THRESHOLD:
-        delivery = subtotal * \
-            Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
+        delivery = subtotal * Decimal(
+            settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - subtotal
     else:
         delivery = Decimal(0)

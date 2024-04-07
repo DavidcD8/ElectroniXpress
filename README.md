@@ -55,7 +55,7 @@ Our business model is designed to evolve with the dynamic landscape of the e-com
 
 ---
 
-![screenshot](documentation/mockup.png)
+![screenshot](documentation/responsive.png)
 
 ## UX
 ### Design Process
@@ -78,7 +78,7 @@ I chose a modern color palette with a blend of tech-inspired Orange and whites, 
 
 I used [coolors.co](https://coolors.co/e84610-009fe3-4a4a4f-445261-d63649-e6ecf0-000000) to generate my colour palette.
 
-![screenshot](documentation/colorscheme.png)
+![screenshot](documentation/colors.png)
 
 ### Typography
 The use of a clean and readable 'AR One Sans' font ensures that users can easily consume information without distractions.
@@ -88,7 +88,6 @@ The use of a clean and readable 'AR One Sans' font ensures that users can easily
 - [Font Awesome](https://fontawesome.com) icons were used throughout the site, such as the social media icons in the footer.
 
 ## User Stories
-
 
 ### New Site Users
 

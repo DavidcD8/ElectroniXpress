@@ -11,9 +11,10 @@ CONDITION_CHOICES = (
     ("used", "Used"),
 )
 
-
-class Subscriber(models.Model):
+# DELETE THIS ENTIRE CLASS
+class NewsletterSubscriber(models.Model):
     email = models.EmailField(unique=True)
+    subscribed_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.email

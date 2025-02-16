@@ -14,39 +14,50 @@ from decimal import Decimal
 from django.utils import timezone
 from .forms import UserProfileForm
 from django.contrib import messages
-from .forms import SubscriberForm
+from .forms import NewsletterSubscriber
+from django.http import HttpResponse
 
 
-def subscribe(request):
+
+
+def subscribe_newsletter(request):
     if request.method == "POST":
-        form = SubscriberForm(request.POST)
-        if form.is_valid():
-            form.save()
-            # You can add a success message here if needed
-            # Redirect to the home page after successful signup
-            return redirect("home")
-    else:
-        form = SubscriberForm()
-
-    return render(request, "subscribe.html", {"form": form})
+        email = request.POST.get("email")
+        if email:
+            # Changed to use Subscriber instead of NewsletterSubscriber
+            subscriber, created = NewsletterSubscriber.objects.get_or_create(email=email)
+            if created:
+                return HttpResponse(f"Thank you for subscribing! (Email: {subscriber.email})")
+            else:
+                return HttpResponse(f"You're already subscribed! (Email: {subscriber.email})")
+    return redirect("home")
 
 
 # View For 404 Page
 def handler404(request, exception):
     return render(request, "404.html", status=404)
 
+# View For About
+def about(request, exception):
+    return render(request, "About.html")
+
+# View For contact
+def contact(request, exception):
+    return render(request, "contact.html")
+
+# View For terms_and_privacy
+def terms_and_privacy(request):
+    return render(request, "terms_and_privacy.html")
 
 # View for the listings page
 def ListingView(request):
     return render(request, "product_list.html")
 
 
+
 # View for home page
 def Home(request):
-    context = {
-        "welcome_message": "Welcome to My Django Web App!",
-    }
-    return render(request, "home.html", context)
+    return render(request, 'home.html', {'current_page': 'home'})
 
 
 @login_required

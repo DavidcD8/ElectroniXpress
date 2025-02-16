@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 
-from .models import Item, Subscriber, UserProfile
+from .models import Item, NewsletterSubscriber, UserProfile
 
 
 class ProfileInline(admin.StackedInline):
@@ -25,4 +25,4 @@ class ItemAdmin(admin.ModelAdmin):
 admin.site.register(Item, ItemAdmin)
 admin.site.unregister(User)
 admin.site.register(UserProfile)
-admin.site.register(Subscriber)
+admin.site.register(NewsletterSubscriber)

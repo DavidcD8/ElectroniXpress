@@ -1,20 +1,21 @@
 from .models import Item
 from django import forms
 from .models import UserProfile
-from .models import Subscriber
+from .models import NewsletterSubscriber
 from django_countries.fields import CountryField
 from django.db import models
 
 
 class SubscriberForm(forms.ModelForm):
     class Meta:
-        model = Subscriber
+        model = NewsletterSubscriber
         fields = ["email"]
 
 
 class UserProfileForm(forms.ModelForm):
     default_country = forms.ChoiceField(
-        choices=CountryField().choices + [('', 'Select Country')])
+        choices=list(CountryField().choices) + [('', 'Select Country')],
+)
 
     class Meta:
         model = UserProfile

@@ -7,7 +7,8 @@ from .models import Order
 
 class OrderForm(forms.ModelForm):
     country = forms.ChoiceField(
-        choices=CountryField().choices + [('', 'Select Country')],
+      choices=list(CountryField().choices) + [('', 'Select Country')],
+
         widget=CountrySelectWidget(
             attrs={'class': 'custom-select d-block w-100'})
     )

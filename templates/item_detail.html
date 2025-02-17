@@ -2,71 +2,82 @@
 {% load static %}
 
 {% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
+<div class="header-container">
+    <!-- You can keep this empty or add a custom header if needed -->
 </div>
 {% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/item_detail.css' %}" />
 
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-            <div class="product-image my-5">
+<!-- Container for the item details -->
+<div class="item-detail-container">
+    <div class="item-detail-row">
+        <!-- Image Column -->
+        <div class="image-col">
+            <div class="product-image">
                 {% if item.image %}
-                <a href="{{ item.image.url }}" target="_blank">
-                    <img class="product-img" src="{{ item.image.url }}" alt="{{ item.name }}">
-                </a>
+                    <a href="{{ item.image.url }}" target="_blank">
+                        <img class="product-img" src="{{ item.image.url }}" alt="{{ item.name }}">
+                    </a>
                 {% else %}
-                <a href="">
-                    <img class="product-img" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.name }}">
-                </a>
+                    <a href="">
+                        <img class="product-img" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.name }}">
+                    </a>
                 {% endif %}
             </div>
         </div>
 
-   
-
-        
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="product-details mb-5 mt-md-5">
+        <!-- Details Column -->
+        <div class="details-col">
+            <div class="product-details">
                 <h2>{{ item.name }}</h2>
                 <hr>
                 <p class="price">€{{ item.price }}</p>
                 <small><p class="quantity">Available: {{ item.quantity }}</p></small>
-                <b><p class="card-text">Condition:</b> {{ item.condition }}</p>
-                <b><p>Seller:</b> <a href="{% url 'view_other_profile' username=item.seller.username %}">{{ item.seller.username }}</a></p>
+                <b><p class="condition-label">Condition:</b> {{ item.condition }}</p>
+                <b><p class="seller-label">Seller:</b>
+                    <a href="{% url 'view_other_profile' username=item.seller.username %}">
+                        {{ item.seller.username }}
+                    </a>
+                </p>
 
+                <!-- Add to Bag Form -->
                 <form class="add-to-bag-form" action="{% url 'add_to_bag' item.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="quantity">Quantity:</label>
-                        <input class="form-control quantity-input" type="number" name="quantity" value="1" min="1" max="99"
-                            data-item_id="{{ item.id }}" id="id_qty_{{ item.id }}">
+                        <input class="quantity-input"
+                               type="number"
+                               name="quantity"
+                               value="1"
+                               min="1"
+                               max="99"
+                               data-item_id="{{ item.id }}"
+                               id="id_qty_{{ item.id }}">
                     </div>
+
                     <div class="buttons">
-                        <a href="{% url 'item_list' %}" class="btn btn-secondary btn-back">Keep Shopping</a>
-                        <input type="submit" class="btn btn-primary btn-add-to-bag" value="Add to Bag">
+                        <a href="{% url 'item_list' %}" class="btn-back">Keep Shopping</a>
+                        <input type="submit" class="btn-add-to-bag" value="Add to Bag">
                     </div>
+
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     <div class="error-message" style="color: red;"></div>
                 </form>
             </div>
         </div>
-        <p>ITEM DESCRIPTION</p>
-        <hr>
-        <div class="col-lg-4 col-md-6 mb-4 description">
-            <p class="card-text">{{ item.description }}</p>
 
-
+        <!-- Description Column -->
+        <div class="description-col">
+            <p class="description-title">ITEM DESCRIPTION</p>
+            <hr>
+            <p class="description-text">{{ item.description }}</p>
         </div>
     </div>
 </div>
 
-<!-- This script will validate the number of items beingg added to the bag-->
+<!-- Quantity Validation Script -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const quantityInput = document.querySelector(".quantity-input");

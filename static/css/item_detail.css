@@ -1,136 +1,157 @@
- 
- 
-body {
-    background-color: #f5f5f5;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-.description{ 
-    border: solid 1px rgb(255, 255, 255);
+/* Global Typography */
+h1, h2, h3, h4, p {
+  font-family: 'AR One Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
 }
 
-  .container {
-    margin-top: 20px;
-  }
-  
-  /* Page Header Styles */
-  .header-container {
-    background-color: #007bff;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-  }
-  
-  /* Product Image Styles */
-  .product-image {
-    text-align: center;
-  }
-  
-  .product-img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  /* Product Details Styles */
-  .product-details {
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
-  }
-  
-  .product-details h2 {
-    color: #333;
-  }
-  
-  .product-details hr {
-    border: 1px solid #ccc;
-    margin-top: 10px;
-  }
-  
-  .price {
-    font-size: 1.25rem;
-    color: #007bff;
-  }
-  
-  .status.available {
-    margin: 10px 0;
-    font-size: 1rem;
-    color: #141414;
-  }
-  
-  .quantity {
-    font-size: 0.9rem;
-    color: #333;
-  }
-  
-  .card-text {
-    font-size: 0.9rem;
-    color: #333;
-    margin-top: 5px;
-  }
-  
-  /* Seller Styles */
-  .product-details a {
-    text-decoration: none;
-    color: #010101;
-  }
-  
-  /* Form Styles */
-  .add-to-bag-form {
-    margin-top: 20px;
-  }
-  
-  .quantity-input {
-    width: 40px;
-    padding: 5px;
-  }
-  
-  .buttons {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .btn-back,
-  .btn-add-to-bag {
-    flex: 1;
-    padding: 5px 10px;
-    font-size: 0.9rem;
-    color: white !important;
-  }
-  
- 
-  
-  .btn-add-to-bag {
-    background-color: #fd3a2b;
-    color: #fff;
-    border: 1px solid white;
-  }
-  
-  .btn-add-to-bag:hover {
-    background-color: #ac0b00;
-    border: 1px solid #ac0b00;
-  }
-  
-  /* Error Message Styles */
-  .error-message {
-    margin-top: 10px;
-    color: red;
-    font-size: 0.9rem;
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .product-details {
-      padding: 10px;
-    }
-  
-    .buttons {
-      flex-direction: column;
-    }
-  }
-  
+/* Container for the item details */
+.item-detail-container {
+max-width: 1200px;
+margin: 30px auto;
+padding: 0 15px;
+}
+
+/* Row-like layout */
+.item-detail-row {
+display: flex;
+flex-wrap: wrap;
+gap: 30px;
+}
+
+/* Image Column */
+.image-col {
+flex: 1 1 300px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.product-image {
+margin: 20px 0;
+}
+
+.product-img {
+max-width: 100%;
+height: auto;
+border: 1px solid #ddd;
+}
+
+/* Details Column */
+.details-col {
+flex: 1 1 300px;
+}
+
+.product-details {
+margin: 20px 0;
+}
+
+.price {
+font-size: 1.5rem;
+color: #fd3a2b; /* Bold red color for price */
+margin: 10px 0;
+}
+
+.quantity {
+color: #666;
+}
+
+.condition-label, .seller-label {
+color: #333;
+}
+
+.product-details hr {
+margin: 10px 0;
+border: 0;
+border-top: 1px solid #ccc;
+}
+
+/* Form Styles */
+.add-to-bag-form .form-group {
+margin-bottom: 10px;
+}
+
+.add-to-bag-form label {
+font-weight: bold;
+}
+
+.quantity-input {
+width: 60px;
+padding: 5px;
+margin-left: 10px;
+}
+
+/* Buttons */
+.buttons {
+display: flex;
+gap: 10px;
+margin-top: 10px;
+}
+
+.btn-back, .btn-add-to-bag {
+text-decoration: none;
+cursor: pointer;
+padding: 5px 10px;
+border: none;
+border-radius: 2px;
+font-family: 'AR One Sans', sans-serif;
+font-size: 14px;
+transition: background-color 0.3s ease;
+}
+
+.btn-back {
+background-color: #666;
+color: #fff;
+}
+
+.btn-back:hover {
+background-color: #333;
+}
+
+.btn-add-to-bag {
+background-color: #f39c12;
+color: #fff;
+}
+
+.btn-add-to-bag:hover {
+background-color: #e67e22;
+}
+
+/* Error Message */
+.error-message {
+margin-top: 5px;
+font-size: 14px;
+color: red;
+}
+
+/* Description Column */
+.description-col {
+flex: 1 1 100%;
+margin-top: 20px;
+}
+
+.description-title {
+font-weight: bold;
+margin-bottom: 5px;
+color: #333;
+}
+
+.description-text {
+color: #555;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+.item-detail-row {
+  flex-direction: column;
+}
+
+.image-col, .details-col, .description-col {
+  flex: 1 1 100%;
+}
+
+.product-img {
+  max-width: 80%;
+}
+}

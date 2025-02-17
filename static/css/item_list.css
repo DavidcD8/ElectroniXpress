@@ -71,7 +71,7 @@ h1,h2,h3,h4,p{
   .card-text a {
     color: #11bae4; /* Red color for seller links */
   }
-  
+
   .card-text a:hover {
     text-decoration: none;
   }
@@ -81,46 +81,29 @@ h1,h2,h3,h4,p{
     font-size: 16px;
     font-weight: bold;
   }
-  
+
   /* Style the pagination */
   .pagination {
     justify-content: center;
     margin-top: 20px;
   }
-  
+
   .navbar {
     width: 100% !important;
   }
-  
+
 
   .page-item.active .page-link {
     background-color: #11bae4; 
     border-color: #ffffff00;
   }
-  
+
   .page-link {
     color: #11bae4;  
   }
-  
+
   .page-link:hover {
     color: #11bae4;  
-  }
-  .btn-outline-danger {
-    background-color: #fd3a2b;   
-    --bs-btn-color: #ffffff;
-    --bs-btn-border-color: #fd3a2b;
-    --bs-btn-hover-color: #fd3a2b;
-    --bs-btn-hover-bg: #ac0b00;
-    --bs-btn-hover-border-color: #ffffff;
-    --bs-btn-focus-shadow-rgb: 220,53,69;
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #3970aa;
-    --bs-btn-active-border-color: #ffffff;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #dc3545;
-    --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: #dc3545;
-    --bs-gradient: none;
   }
 
 
@@ -129,7 +112,7 @@ h1,h2,h3,h4,p{
   justify-content: center;
   margin-top: 20px; /* Adjust this margin to control the spacing from the content above */
   }
-  
+
   /* Optional: Add padding and background color to the pagination element */
   .pagination {
   padding: 10px;

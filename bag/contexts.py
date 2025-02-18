@@ -1,49 +1,44 @@
 from decimal import Decimal
-
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-
-from onlineshop.models import Item  # Make sure to import your Item model
-
+from onlineshop.models import Item  # Adjust model import if needed
 
 def bag_contents(request):
     bag_items = []
     total = 0
-    product_count = 0
+    bag_total_quantity = 0  # Renamed from product_count for clarity
     bag = request.session.get("bag", {})
 
     for item_id, quantity in bag.items():
         item = get_object_or_404(Item, pk=item_id)
         total += item.price * quantity
-        product_count += quantity
+        bag_total_quantity += quantity  # Count total quantity of items
         bag_items.append(
             {
                 "item_id": item_id,
                 "quantity": quantity,
                 "item": item,
-                "total_price": item.price
-                * quantity,  # Calculate total price for each item
+                "total_price": item.price * quantity,
             }
         )
 
-    subtotal = total  # Calculate the subtotal as the total amount in Euros
+    subtotal = total
 
-    # Calculate delivery cost
+    # Delivery cost logic
     if subtotal < settings.FREE_DELIVERY_THRESHOLD:
-        delivery = subtotal * Decimal(
-            settings.STANDARD_DELIVERY_PERCENTAGE / 100)
+        delivery = subtotal * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - subtotal
     else:
         delivery = Decimal(0)
         free_delivery_delta = Decimal(0)
 
-    grand_total = subtotal + delivery  # Add delivery cost to the grand total
+    grand_total = subtotal + delivery  
 
     context = {
         "bag_items": bag_items,
-        "subtotal": subtotal,  # Pass the subtotal to the template
+        "subtotal": subtotal,
         "total": total,
-        "product_count": product_count,
+        "bag_total_quantity": bag_total_quantity,  # ✅ Pass this to the template
         "delivery": delivery,
         "free_delivery_delta": free_delivery_delta,
         "free_delivery_threshold": settings.FREE_DELIVERY_THRESHOLD,

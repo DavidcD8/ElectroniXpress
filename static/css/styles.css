@@ -128,16 +128,17 @@ li::marker {
   color: #333;
 }
 
-.cart-count {
-  position: absolute;
-  top: -8px;
-  right: -12px;
-  background: #007bff;
-  color: white;
-  padding: 2px 4px;
-  border-radius: 50%;
-  font-size: 0.3rem;
+.cart-badge {
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 50%;
+    top: 5px;
+    right: 5px;
 }
+
 
 .profile-photo {
   width: 32px;

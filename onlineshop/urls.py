@@ -11,7 +11,6 @@ urlpatterns = [
     path("profile/<str:username>/", views.view_other_profile, name="view_other_profile"),
     path("mark_as_sold/<int:item_id>/", views.mark_as_sold, name="mark_as_sold"),
     path("process_checkout/", views.process_checkout_view, name="process_checkout"),
-    path("update_bag/<int:item_id>/", views.update_bag, name="update_bag"),
     path("search/", views.search_results, name="search_results"),
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),

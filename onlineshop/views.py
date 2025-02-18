@@ -9,7 +9,6 @@ from django.core.paginator import Paginator
 from .forms import EditItemForm
 from .forms import MarkItemAsSoldForm
 from .forms import CheckoutForm
-from .forms import UpdateQuantityForm
 from decimal import Decimal
 from django.utils import timezone
 from .forms import UserProfileForm
@@ -198,33 +197,7 @@ def view_other_profile(request, username):
     return render(request, "other_profile.html", context)
 
 
-def update_bag(request, item_id):
-    if request.method == "POST":
-        form = UpdateQuantityForm(request.POST)
-        if form.is_valid():
-            new_quantity = form.cleaned_data["quantity"]
 
-            # Update the bag item's quantity
-            bag = request.session.get("bag", {})
-            bag[item_id] = new_quantity
-            request.session["bag"] = bag
-            request.session.modified = True
-
-            # Recalculate bag contents (subtotal and total)
-            total = Decimal(0)
-            for item_id, quantity in bag.items():
-                item = get_object_or_404(Item, pk=item_id)
-                total += item.price * quantity
-
-            subtotal = total  # Calculate the subtotal in Euros
-
-            grand_total = subtotal  # include additional costs like
-
-            # Redirect to the cart or bag view after updating
-            return redirect("view_bag")
-
-    # Handle other cases or errors as needed
-    return redirect("view_bag")
 
 
 @login_required

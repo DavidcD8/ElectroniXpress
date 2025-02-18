@@ -91,5 +91,3 @@ class CheckoutForm(forms.Form):
     cvv = forms.IntegerField(required=True)
 
 
-class UpdateQuantityForm(forms.Form):
-    quantity = forms.IntegerField(min_value=1, max_value=99)

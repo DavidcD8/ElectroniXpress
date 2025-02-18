@@ -40,10 +40,12 @@
 
 
         <div class="nav-section">
-          <a href="{% url 'view_bag' %}" class="cart-link">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-count">0</span>
-          </a>
+          <a href="{% url 'view_bag' %}" class="cart-icon">
+            🛒 
+            {% if bag_total_quantity > 0 %}
+                <span class="cart-badge">{{ bag_total_quantity }}</span>
+            {% endif %}
+        </a>
           {% if user.is_authenticated %}
             <div class="profile-dropdown">
               {% if request.user.profile.profile_picture %}

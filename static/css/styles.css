@@ -396,16 +396,16 @@ li::marker {
 /* Grid for Product Cards */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(1, minmax(280px, 1fr));
   gap: 2rem;
 }
 
 /* Product Card Styles */
 .product-card {
   background: #fff;
-  border: 1px solid #eaeaea;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0px 1px 3px 2px rgb(241, 241, 241);
   transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;

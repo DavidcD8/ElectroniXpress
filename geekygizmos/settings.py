@@ -1,8 +1,9 @@
 import os
 from pathlib import Path
+import pymysql
+pymysql.install_as_MySQLdb()
 
-import dj_database_url
-
+ 
 if os.path.isfile("env.py"):
     import env
 
@@ -18,7 +19,7 @@ SECRET_KEY = "tempkey"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = []
@@ -92,10 +93,10 @@ TEMPLATES = [
 
 SITE_ID = 1
 
-ESMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND  = "django.core.mail.backends.smtp.EmailBackend"
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+#ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_SIGNUP_URL = "/accounts/signup/"
 ACCOUNT_USERNAME_MIN_LENGTH = 4
@@ -181,7 +182,7 @@ STRIPE_WH_SECRET = os.getenv("STRIPE_WH_SECRET", "")
 
 if "DEVELOPMENT" in os.environ:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-    DEFAULT_FROM_EMAIL = "codeinstitutetest@example.com"
+    DEFAULT_FROM_EMAIL = "emailtest@hotmail.com"
 else:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_USE_TLS = True

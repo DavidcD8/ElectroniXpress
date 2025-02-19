@@ -6,16 +6,12 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/animate.min.css' %}" />
 <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
-
-
 <h1 class="profile-name">{{ user.username }}</h1>
-
-  
- 
 
 <!-- Profile Info -->
 <div class="profile-info-section">
-  
+  <a href="{% url 'logout' %}">Logout</a>
+
     <h2>Profile Information</h2>
     <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -23,7 +19,7 @@
      <button type="submit" class="save-button">Save</button>
   </form>
 </div>
-<br>    
+<br>
 <hr>
 <div class="profile-container"></div>
 <!-- Selling Items -->
@@ -32,7 +28,7 @@
   <div class="scrollable-container">
     {% for item in seller_items %}
     <div class="item">
-    
+
       <h3 class="item-name">{{ item.name }}</h3>
       <p class="item-description">{{ item.description }}</p>
       <p class="item-price">Price: €{{ item.price }}</p>
